@@ -17,6 +17,10 @@ class MainStart : AppCompatActivity() {
             var intent = Intent(this,MainLogin::class.java)
             startActivity(intent)
         }
+        main_button_create?.setOnClickListener {
+            var intent = Intent(this,MainRegister::class.java)
+            startActivity(intent)
+        }
     }
     fun init(){
         main_button_login = findViewById(R.id.main_button_login)

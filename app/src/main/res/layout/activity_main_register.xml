@@ -4,6 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainRegister">
+    tools:context=".MainRegister"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-23dp">
+
+    <Button
+        android:id="@+id/register_button_account"
+        android:layout_width="183dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="140dp"
+        android:backgroundTint="#000000"
+        android:text="Create account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/register_button_login"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="235dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="84dp"
+        android:backgroundTint="#000000"
+        android:text="Already have an account?"
+        android:textColor="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:text="Create an account"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/reregister_edit_user"
+        android:layout_width="266dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="212dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:text="Invest and double your income now"
+        android:textColor="#6E6E6E"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/register_button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="335dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <EditText
+        android:id="@+id/register_edit_name"
+        android:layout_width="266dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="271dp"
+        android:ems="10"
+        android:hint="Full Name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/register_edit_email"
+        android:layout_width="266dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="332dp"
+        android:ems="10"
+        android:hint="Email-address"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/register_edit_repassword"
+        android:layout_width="266dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="455dp"
+        android:ems="10"
+        android:hint="Re-Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/register_edit_password"
+        android:layout_width="266dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="396dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
