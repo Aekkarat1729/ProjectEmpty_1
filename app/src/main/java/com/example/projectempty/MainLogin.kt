@@ -14,11 +14,12 @@ import com.google.firebase.auth.FirebaseAuth
 class MainLogin : AppCompatActivity() {
     var mAuth: FirebaseAuth? = null
     private val TAG: String = "Login Activity"
+
     var login_button_back:ImageButton? = null
     var login_edit_email:EditText? = null
     var login_edit_password:EditText? = null
     var login_button_login:Button? = null
-    var login_button_forgot:Button? = null
+    var login_button_create:Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_login)
@@ -32,7 +33,7 @@ class MainLogin : AppCompatActivity() {
         login_button_login?.setOnClickListener {
             val email = login_edit_email?.text.toString().trim { it <= ' ' }
             val password = login_edit_password?.text.toString().trim { it <= ' ' }
-// ทําการตรวจสอบก่อนว่ามีข้อมูลหรือไม่ ก่อนที5จะไปตรวจสอบค่า
+        // ทําการตรวจสอบก่อนว่ามีข้อมูลหรือไม่ ก่อนทีจะไปตรวจสอบค่า
             if (email.isEmpty()) {
                 Toast.makeText(this,"Please enter your email address.",Toast.LENGTH_LONG).show()
                 Log.d(TAG, "Email was empty!")
@@ -44,15 +45,13 @@ class MainLogin : AppCompatActivity() {
                 Log.d(TAG, "Password was empty!")
                 return@setOnClickListener
             }
-            //ทําการตรวจสอบค่าที5กรอกกับค่าจาก Firebase Authentication
+            //ทําการตรวจสอบค่าทีกรอกกับค่าจาก Firebase Authentication
             mAuth!!.signInWithEmailAndPassword(email,
                 password).addOnCompleteListener { task ->
 
-            //กรณีที5ไม่ผ่านการตรวจสอบ
-
+                //กรณีทีไม่ผ่านการตรวจสอบ
                 if (!task.isSuccessful) {
-
-            //ตรวจสอบความยาวของ password ว่าน้อยกว่า 6 ไหม
+                    //ตรวจสอบความยาวของ password ว่าน้อยกว่า 6 ไหม
                     if (password.length < 6) {
                         login_edit_password?.error = "Please check your password.Password must have minimum 6 characters."
                         Log.d(TAG, "Enter password less than 6 characters.")
@@ -69,23 +68,18 @@ class MainLogin : AppCompatActivity() {
             }
         }
 
-    login_button_back?.setOnClickListener {
-            var intent = Intent(this,MainStart::class.java)
-            startActivity(intent)
-        }
+        //กรณีกดปุ่ ม create account
+        login_button_create?.setOnClickListener {
+            startActivity(Intent(this@MainLogin, MainRegister::class.java)) }
 
-        login_button_login?.setOnClickListener {
-            var intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-        }
-
-
+        //กรณีกดปุ่ ม Back
+        login_button_back?.setOnClickListener { onBackPressed() }
     }
     fun init(){
         login_button_back = findViewById(R.id.login_button_back)
         login_edit_email = findViewById(R.id.login_edit_email)
         login_edit_password = findViewById(R.id.login_edit_password)
         login_button_login = findViewById(R.id.login_button_login)
-        login_button_forgot = findViewById(R.id.register_button_login)
+        login_button_create = findViewById(R.id.login_button_create)
     }
 }
