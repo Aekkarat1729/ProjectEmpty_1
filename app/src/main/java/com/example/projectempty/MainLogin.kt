@@ -22,6 +22,11 @@ class MainLogin : AppCompatActivity() {
             var intent = Intent(this,MainStart::class.java)
             startActivity(intent)
         }
+
+        login_button_login?.setOnClickListener {
+            var intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
     fun init(){
         login_button_back = findViewById(R.id.register_button_back)
