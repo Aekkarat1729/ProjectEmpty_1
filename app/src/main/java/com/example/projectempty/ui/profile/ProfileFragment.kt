@@ -1,42 +1,48 @@
 package com.example.projectempty.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.projectempty.MainStart
+import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
-
-    private var _binding: FragmentProfileBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var mAuth: FirebaseAuth
+    private val TAG = "ProfileFragment"
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val signoutButton = view.findViewById<Button>(R.id.profile_button_logout)
+        signoutButton.setOnClickListener {
+            mAuth.signOut()
+            Toast.makeText(requireContext(), "Signed out!", Toast.LENGTH_LONG).show()
+            Log.d(TAG, "Signed out!")
+            val intent = Intent(requireActivity(), MainStart::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
 
-//        val textView: TextView = binding.textProfile
-//        profileViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        return root
+        return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mAuth = FirebaseAuth.getInstance()
     }
 }
