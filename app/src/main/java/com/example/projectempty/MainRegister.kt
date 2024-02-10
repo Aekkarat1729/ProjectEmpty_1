@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import com.google.firebase.database.FirebaseDatabase
 
 class MainRegister : AppCompatActivity() {
     var register_button_back:ImageButton? = null
@@ -16,6 +17,7 @@ class MainRegister : AppCompatActivity() {
     var register_edit_email:EditText? = null
     var register_edit_password:EditText? = null
     var register_edit_repassword:EditText? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_register)
