@@ -8,7 +8,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
 
 class MainRegister : AppCompatActivity() {
@@ -34,12 +33,11 @@ class MainRegister : AppCompatActivity() {
             startActivity(intent)
         }
         register_button_account?.setOnClickListener{
-            var user = register_edit_user.toString().trim()
-            var name = register_edit_name.toString().trim()
-            var email = register_edit_email.toString().trim()
-            var pass = register_edit_password.toString().trim()
-            var repass = register_edit_repassword.toString().trim()
-
+//            var user = register_edit_user.toString().trim()
+//            var name = register_edit_name.toString().trim()
+//            var email = register_edit_email.toString().trim()
+//            var pass = register_edit_password.toString().trim()
+//            var repass = register_edit_repassword.toString().trim()
 
         }
     }
