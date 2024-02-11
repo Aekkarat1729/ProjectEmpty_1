@@ -6,11 +6,12 @@ class MphotoModel {
     constructor(title:String?,Image:String?){
         this.title = title
         this.Image = Image
+
     }
-    fun toMap(): Map<String, Any>{
+    fun toMap(): Map<String, Any> {
         val result = HashMap<String, Any>()
-        result.put("title",title!!)
-        result.put("Image",Image!!)
-        return  result
+        result.put("title", title!!)
+        result.put("image", Image!!)
+        return result
     }
 }

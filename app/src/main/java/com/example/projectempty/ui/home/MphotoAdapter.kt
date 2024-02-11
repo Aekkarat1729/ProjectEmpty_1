@@ -1,10 +1,8 @@
-package com.example.projectempty.ui.home
+package com.example.projectempty
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projectempty.MphotoModel
-import com.example.projectempty.R
 import com.squareup.picasso.Picasso
 
 class MphotoAdapter (val MphotoList:List<MphotoModel>):RecyclerView.Adapter<ViewHolder>(){
