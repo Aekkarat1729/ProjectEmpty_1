@@ -62,6 +62,7 @@ class MainRegister : AppCompatActivity() {
 //            if(name.isEmpty()){
 //                register_edit_user?.setError("Please enter Your Name")
 //            }
+
             validateUser()
             validateEmail()
             validatePassword()
@@ -79,7 +80,9 @@ class MainRegister : AppCompatActivity() {
                 finish()
             }
 
-
+            if(validateEmail() == true && validatePassword() == true){
+                createEmail()
+            }
 //            val email = register_edit_email?.text.toString().trim { it <= ' ' }
 //            val password = register_edit_password?.text.toString().trim { it <= ' ' }
 //
@@ -124,6 +127,14 @@ class MainRegister : AppCompatActivity() {
         }
 
 
+    }
+    private fun createEmail():Boolean{
+        val pass:String = register_edit_password!!.text.toString().trim()
+        val email:String = register_edit_email!!.text.toString().trim()
+
+        mAuth!!.createUserWithEmailAndPassword(email,
+            pass)
+        return true
     }
     private fun validateName():Boolean{
         var user = register_edit_name?.text.toString().trim()
