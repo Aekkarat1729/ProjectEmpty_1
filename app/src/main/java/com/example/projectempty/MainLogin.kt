@@ -1,6 +1,7 @@
 package com.example.projectempty
 
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,11 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainLogin : AppCompatActivity() {
     var mAuth: FirebaseAuth? = null
@@ -45,6 +51,7 @@ class MainLogin : AppCompatActivity() {
                 Log.d(TAG, "Password was empty!")
                 return@setOnClickListener
             }
+
             //ทําการตรวจสอบค่าทีกรอกกับค่าจาก Firebase Authentication
             mAuth!!.signInWithEmailAndPassword(email,
                 password).addOnCompleteListener { task ->
