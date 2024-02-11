@@ -31,14 +31,13 @@ class MainRegister : AppCompatActivity() {
     var register_edit_email:EditText? = null
     var register_edit_password:EditText? = null
     var register_edit_repassword:EditText? = null
-//    var register_text:TextView? = null
+    var register_text:TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_register)
         init()
         mAuth = FirebaseAuth.getInstance()
-
 
         if (mAuth!!.currentUser != null) {
             startActivity(Intent(this@MainRegister,
@@ -71,14 +70,24 @@ class MainRegister : AppCompatActivity() {
             validateCpassword()
             validateName()
             if(validateUser() == true && validateEmail() == true && validatePassword() == true && validateCpassword() == true && validateName() == true){
-                val databaseReference =  database.reference.child("user").push()
-                databaseReference.child("user name").setValue(user)
-                databaseReference.child("password").setValue(pass)
-                databaseReference.child("email").setValue(email)
-                databaseReference.child("full name").setValue(name)
+                var tempMail:String = email
+                val mark = '.'
+                var newMail = ""
+                for (char in tempMail){
+                    if(char != mark){
+                        newMail += char
+                    }
+                }
+//                register_text?.setText(newMail)
+
+                val databaseReference =  database.reference.child("Account").child(newMail)
+                databaseReference.child("User name").setValue(user)
+                databaseReference.child("Password").setValue(pass)
+                databaseReference.child("Email").setValue(email)
+                databaseReference.child("Full name").setValue(name)
                 Toast.makeText(this,"Create account successfully!",Toast.LENGTH_LONG).show()
                 Log.d(TAG, "Create account successfully!")
-                 startActivity(Intent(this@MainRegister, MainLogin::class.java))
+                 startActivity(Intent(this@MainRegister, MainActivity::class.java))
                 finish()
             }
 
@@ -124,7 +133,7 @@ class MainRegister : AppCompatActivity() {
 
 
         register_button_login?.setOnClickListener {
-            var intent = Intent(this,MainLogin::class.java)
+            var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -226,5 +235,6 @@ class MainRegister : AppCompatActivity() {
         register_edit_email = findViewById(R.id.register_edit_email)
         register_edit_password = findViewById(R.id.register_edit_password)
         register_edit_repassword = findViewById(R.id.register_edit_repassword)
+        register_text = findViewById(R.id.register_text)
     }
 }
