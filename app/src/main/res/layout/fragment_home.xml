@@ -6,16 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/home_text_wellcome"
-        android:layout_width="346dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="32dp"
+    <ScrollView
+        android:layout_width="403dp"
+        android:layout_height="593dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="217dp"
-        android:textSize="24sp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home_text_wellcome"
+                android:layout_width="385dp"
+                android:layout_height="36dp"
+                android:layout_margin="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Most Popular"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerView_MPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

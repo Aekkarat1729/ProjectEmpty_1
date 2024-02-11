@@ -3,22 +3,24 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/icon_home"
-        android:title="@string/title_home" />
+        android:icon="@drawable/icon_home2"
+        android:title="@string/title_home"
+        />
+
 
     <item
         android:id="@+id/navigation_heart"
         android:icon="@drawable/icon_heart"
-        android:title="@string/title_heart" />
+        android:title="Likes" />
 
     <item
         android:id="@+id/navigation_hot"
         android:icon="@drawable/icon_fire"
-        android:title="@string/title_hot" />
+        android:title="OnFire" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/icon_profile"
         android:title="@string/title_profile" />
 
 

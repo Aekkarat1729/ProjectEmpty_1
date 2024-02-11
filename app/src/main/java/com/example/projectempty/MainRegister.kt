@@ -1,6 +1,7 @@
 package com.example.projectempty
 
 import android.app.AlertDialog
+import android.app.ListActivity
 import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.content.Intent
@@ -13,6 +14,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -126,8 +128,28 @@ class MainRegister : AppCompatActivity() {
             startActivity(intent)
         }
 
+   // override fun OnStart(){
+   //     super.onStart()
+   //     val currentUser = mAuth.currentUser
+   //     updateUi(currentUser)
+   // }
 
     }
+
+    private fun updateUi(user: FirebaseUser?){
+        if (user != null){
+            val uid = user.uid
+            val email = user.email
+            Toast.makeText(
+                this@MainRegister,
+                "Welcome: $email, Your ID is: $uid",
+                Toast.LENGTH_SHORT
+            ).show()
+            val intentSession = Intent(this, ListActivity::class.java)
+            startActivity(intentSession)
+        }
+    }
+
     private fun createEmail():Boolean{
         val pass:String = register_edit_password!!.text.toString().trim()
         val email:String = register_edit_email!!.text.toString().trim()
