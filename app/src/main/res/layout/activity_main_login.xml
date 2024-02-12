@@ -12,7 +12,7 @@
         android:id="@+id/login_button_login"
         android:layout_width="183dp"
         android:layout_height="53dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="156dp"
         android:backgroundTint="#000000"
         android:text="LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,7 +24,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="235dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="104dp"
         android:backgroundTint="#000000"
         android:text="Create Account"
         android:textColor="#4CAF50"
@@ -38,7 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
         android:text="Login an account"
+        android:textColor="#000000"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +69,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingLeft="15dp"
+        android:background="@drawable/custom_edittext"/>
 
     <EditText
         android:id="@+id/login_edit_password"
@@ -77,6 +81,9 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="text|textPassword"
+        android:paddingLeft="15dp"
+        android:background="@drawable/custom_edittext"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,8 +91,6 @@
 
     <ImageButton
         android:id="@+id/login_button_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="335dp"
@@ -93,5 +98,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        android:layout_width="47dp"
+        android:layout_height="40dp"
+        android:background="@drawable/icon_back"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

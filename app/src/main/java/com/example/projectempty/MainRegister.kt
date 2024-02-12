@@ -133,7 +133,7 @@ class MainRegister : AppCompatActivity() {
 
 
         register_button_login?.setOnClickListener {
-            var intent = Intent(this,MainActivity::class.java)
+            var intent = Intent(this,MainLogin::class.java)
             startActivity(intent)
         }
 
@@ -216,10 +216,11 @@ class MainRegister : AppCompatActivity() {
         val userEmail = register_edit_email?.text.toString().trim()
         val checkEmail1 = "[a-zA-Z0-9._-]+@gmail.com"
         val checkEmail2 = "[a-zA-Z0-9._-]+@hotmail.th"
+        val checkEmail3 = "[a-zA-Z0-9._-]+@kkumail.com"
         if(userEmail.isEmpty()){
             register_edit_email?.setError("Field can not be empty")
             return false
-        }else if(!userEmail.matches(checkEmail1.toRegex()) && !userEmail.matches(checkEmail2.toRegex())){
+        }else if(!userEmail.matches(checkEmail1.toRegex()) && !userEmail.matches(checkEmail2.toRegex()) && !userEmail.matches(checkEmail3.toRegex())){
             register_edit_email?.setError("Invalid Email!")
             return false
         }else{
