@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectempty.MphotoAdapter
+import com.example.projectempty.MphotoModel
 import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -97,7 +98,7 @@ class HomeFragment : Fragment() {
     private fun onBindingFirebase() {
         databaseReferenceMphoto.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                responseMphoto.add(snapshot.getValue(MphotoModel::class.java)!!)
+                this@HomeFragment.responseMphoto.add(snapshot.getValue(MphotoModel::class.java)!!)
                 MphotoAdapter!!.notifyDataSetChanged()
             }
 

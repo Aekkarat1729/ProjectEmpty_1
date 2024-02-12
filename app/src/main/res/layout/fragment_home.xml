@@ -28,7 +28,8 @@
                 android:layout_height="36dp"
                 android:layout_margin="10dp"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/topic"
@@ -37,14 +38,18 @@
                 android:layout_margin="10dp"
                 android:text="Most Popular"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyclerView_MPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp" />
+
+
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

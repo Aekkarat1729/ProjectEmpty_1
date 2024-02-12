@@ -1,4 +1,4 @@
-package com.example.projectempty.ui.home
+package com.example.projectempty
 
 import android.view.View
 import android.widget.ImageView

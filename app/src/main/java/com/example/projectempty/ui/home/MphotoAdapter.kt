@@ -7,7 +7,7 @@ import com.squareup.picasso.Picasso
 
 class MphotoAdapter (val MphotoList:List<MphotoModel>):RecyclerView.Adapter<ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.itemhorizontal, parent,false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.itemhorizontal, parent ,false))
     }
 
 
