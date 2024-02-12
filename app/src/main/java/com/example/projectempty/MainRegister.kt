@@ -178,10 +178,10 @@ class MainRegister : AppCompatActivity() {
     }
     private fun validateUser():Boolean{
         var user = register_edit_user?.text.toString().trim()
-        if(user.length >= 6 && user.length <= 20){
+        if(user.length >= 5 && user.length <= 20){
             return true
         }else{
-            register_edit_user?.setError("กรอกให้มากกว่า 6 ตัวอักษรแต่ไม่เกิน 20 ตัวอักษร")
+            register_edit_user?.setError("กรอกให้มากกว่า 5 ตัวอักษรแต่ไม่เกิน 20 ตัวอักษร")
             return false
         }
     }

@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class MphotoAdapter (val MphotoList:List<MphotoModel>):RecyclerView.Adapter<ViewHolder>(){
+class PphotoAdapter (val MphotoList:List<MphotoModel>): RecyclerView.Adapter<ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.itemhorizontal, parent ,false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.itemvertical, parent ,false))
     }
 
 
@@ -23,7 +23,7 @@ class MphotoAdapter (val MphotoList:List<MphotoModel>):RecyclerView.Adapter<View
             .into(holder.imageView)
 
 
-        holder.cardView.setOnClickListener(View.OnClickListener {view ->
+        holder.cardView.setOnClickListener(View.OnClickListener { view ->
             val readActivity = Intent(view.context,ContentActivity::class.java)
             view.context.startActivity(readActivity)
             Log.d("M planner",dataModel.title.toString())

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ProjectEmpty"
         tools:targetApi="31">
         <activity
+            android:name=".ContentActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainRegister"
             android:exported="false" />
         <activity
@@ -26,12 +29,17 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
