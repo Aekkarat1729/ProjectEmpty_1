@@ -1,11 +1,16 @@
 package com.example.projectempty.ui.home
 
+import android.app.ListActivity
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView.RecyclerListener
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +20,7 @@ import com.example.projectempty.MphotoModel
 import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -57,7 +63,7 @@ class HomeFragment : Fragment() {
                 val value = dataSnapshot.getValue(String::class.java)
                 Log.d(TAG, "Value is: $value")
 
-                home_text_wellcome?.setText("Your Wellcome "+value+" !!")
+                home_text_wellcome?.setText("Welcome, "+value+".")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -82,8 +88,7 @@ class HomeFragment : Fragment() {
 
 
         RecyclerViewMphoto.layoutManager = LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL, false)
-        databaseReferenceMphoto = database.getReference("Mphoto")
-
+        databaseReferenceMphoto = database.getReference("Mphoto/")
         responseMphoto = mutableListOf()
         MphotoAdapter = MphotoAdapter(responseMphoto as ArrayList<MphotoModel>)
         RecyclerViewMphoto.adapter = MphotoAdapter
@@ -98,7 +103,7 @@ class HomeFragment : Fragment() {
     private fun onBindingFirebase() {
         databaseReferenceMphoto.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                this@HomeFragment.responseMphoto.add(snapshot.getValue(MphotoModel::class.java)!!)
+                responseMphoto.add(snapshot.getValue(MphotoModel::class.java)!!)
                 MphotoAdapter!!.notifyDataSetChanged()
             }
 
@@ -126,7 +131,7 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    companion object {
-        private const val TAG = "HomeFragment"
+        companion object {
+            private const val TAG = "HomeFragment"
+        }
     }
-}
