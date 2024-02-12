@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     app:cardCornerRadius="20dp"
-    app:contentPaddingBottom="5dp"
-    android:layout_marginLeft="5dp">
+    app:contentPaddingBottom="0dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginBottom="10dp"
+    >
 
     <RelativeLayout
         android:id="@+id/RelativeLayout"
