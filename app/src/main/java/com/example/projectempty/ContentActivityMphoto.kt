@@ -11,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
-class ContentActivity : AppCompatActivity() {
+class ContentActivityMphoto : AppCompatActivity() {
     lateinit var textContenttitle:TextView
     lateinit var imageViewContent:ImageView
     lateinit var textContentDetail:TextView

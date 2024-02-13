@@ -24,7 +24,7 @@ class MphotoAdapter (val MphotoList:List<MphotoModel>):RecyclerView.Adapter<View
 
 
         holder.cardView.setOnClickListener(View.OnClickListener {view ->
-            val readActivity = Intent(view.context,ContentActivity::class.java)
+            val readActivity = Intent(view.context,ContentActivityMphoto::class.java)
             readActivity.putExtra("key",dataModel.key)
             view.context.startActivity(readActivity)
             Log.d("M planner",dataModel.title.toString())

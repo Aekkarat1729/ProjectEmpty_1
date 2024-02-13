@@ -16,6 +16,7 @@ class MainStart : AppCompatActivity() {
     private val TAG: String = "Main Activity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main_start)
         init()
 

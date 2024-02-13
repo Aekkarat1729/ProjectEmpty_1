@@ -10,9 +10,10 @@
 
     <Button
         android:id="@+id/register_button_account"
-        android:layout_width="183dp"
-        android:layout_height="53dp"
+        android:layout_width="206dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="140dp"
+        android:background="@drawable/back_navigation"
         android:backgroundTint="#000000"
         android:text="Create account"
         app:layout_constraintBottom_toBottomOf="parent"

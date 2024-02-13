@@ -1,5 +1,6 @@
 package com.example.projectempty.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projectempty.AddActivity
 import com.example.projectempty.MphotoAdapter
 import com.example.projectempty.MphotoModel
 import com.example.projectempty.PphotoAdapter
 import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentHomeBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -40,6 +43,7 @@ class HomeFragment : Fragment() {
     lateinit var responsePphoto:MutableList<MphotoModel>
     private var MphotoAdapter: MphotoAdapter? = null
     private var PphotoAdapter: PphotoAdapter? = null
+    lateinit var fab:FloatingActionButton
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -85,6 +89,8 @@ class HomeFragment : Fragment() {
 
         RecyclerViewMphoto = view.findViewById<RecyclerView>(R.id.RecyclerView_MPhoto)
         RecyclerViewPphoto = view.findViewById<RecyclerView>(R.id.RecyclerView_Pphoto)
+        fab = view.findViewById(R.id.fab)
+
         //Mphoto นะครับเธอ
         RecyclerViewMphoto.layoutManager = LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL, false)
         databaseReferenceMphoto = database.getReference("Mphoto")
@@ -101,6 +107,11 @@ class HomeFragment : Fragment() {
         PphotoAdapter = PphotoAdapter(responsePphoto as ArrayList<MphotoModel>)
         RecyclerViewPphoto.adapter = PphotoAdapter
 
+
+        fab.setOnClickListener{
+            val intent = Intent(context,AddActivity::class.java)
+            startActivity(intent)
+        }
 
         onBindingFirebase()
 

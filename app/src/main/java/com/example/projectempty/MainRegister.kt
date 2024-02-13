@@ -35,6 +35,7 @@ class MainRegister : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main_register)
         init()
         mAuth = FirebaseAuth.getInstance()
