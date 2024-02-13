@@ -25,7 +25,7 @@ class MainLogin : AppCompatActivity() {
     var login_edit_email:EditText? = null
     var login_edit_password:EditText? = null
     var login_button_login:Button? = null
-    var login_button_create:Button? = null
+    var login_button_forget:Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -76,9 +76,10 @@ class MainLogin : AppCompatActivity() {
             }
         }
 
-        //กรณีกดปุ่ ม create account
-        login_button_create?.setOnClickListener {
-            startActivity(Intent(this@MainLogin, MainRegister::class.java)) }
+        login_button_forget!!.setOnClickListener{
+            val gotoForget = Intent(this,ForgetActivity::class.java)
+            startActivity(gotoForget)
+        }
 
         //กรณีกดปุ่ ม Back
         login_button_back?.setOnClickListener { onBackPressed() }
@@ -88,6 +89,7 @@ class MainLogin : AppCompatActivity() {
         login_edit_email = findViewById(R.id.login_edit_email)
         login_edit_password = findViewById(R.id.login_edit_password)
         login_button_login = findViewById(R.id.login_button_login)
-        login_button_create = findViewById(R.id.login_button_create)
+        login_button_forget = findViewById(R.id.login_button_forget)
+
     }
 }

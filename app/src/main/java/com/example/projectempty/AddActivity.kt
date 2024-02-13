@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.Exception
+import java.util.UUID
 
 class AddActivity : AppCompatActivity() {
     lateinit var buttonUpload:Button
@@ -72,7 +73,7 @@ class AddActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 if(filePath != null){
                     progressDialog!!.show()
-                    imageName = "test.jpg"
+                    imageName = "${UUID.randomUUID()}.jpg"
                     val childRef: StorageReference = firebaseStorage.reference.child(imageName.toString())
                     val uploadTask = childRef.putFile(filePath!!)
                     uploadTask.addOnSuccessListener {
@@ -100,7 +101,7 @@ class AddActivity : AppCompatActivity() {
         if(TextUtils.isEmpty(addTitle.text)){
             Toast.makeText(this@AddActivity,"Please Enter your Title..",Toast.LENGTH_SHORT).show()
         }else{
-            val databaseReference = firebaseDatabase.reference.child("Mphoto").push()
+            val databaseReference = firebaseDatabase.reference.child("home").push()
             databaseReference.child("key").setValue(databaseReference.key)
             databaseReference.child("title").setValue(addTitle.text.toString())
             databaseReference.child("detail").setValue(addDetail.text.toString())

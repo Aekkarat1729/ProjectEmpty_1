@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/login_button_login"
-        android:layout_width="185dp"
-        android:layout_height="48dp"
+        android:layout_width="235dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="232dp"
         android:background="@drawable/back_navigation"
         android:backgroundTint="#000000"
@@ -19,20 +19,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/login_button_create"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="235dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="180dp"
-        android:backgroundTint="#000000"
-        android:text="Create Account"
-        android:textColor="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
 
     <TextView
         android:id="@+id/register_text"
@@ -65,26 +51,26 @@
         android:layout_width="266dp"
         android:layout_height="45dp"
         android:layout_marginTop="280dp"
+        android:background="@drawable/custom_edittext"
         android:ems="10"
         android:hint="Username/Email address"
         android:inputType="text"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingLeft="15dp"
-        android:background="@drawable/custom_edittext"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/login_edit_password"
         android:layout_width="266dp"
         android:layout_height="45dp"
         android:layout_marginTop="344dp"
+        android:background="@drawable/custom_edittext"
         android:ems="10"
         android:hint="Password"
         android:inputType="text|textPassword"
         android:paddingLeft="15dp"
-        android:background="@drawable/custom_edittext"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -103,6 +89,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/login_button_forget"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="153dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="180dp"
+        android:text="Forgot your password ?"
+        android:textColor="#4CAE50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

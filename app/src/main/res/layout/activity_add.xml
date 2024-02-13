@@ -49,6 +49,7 @@
             android:background="@drawable/placeholder"
             android:baselineAlignBottom="false"
             android:scaleType="center"
+
             />
 
         <Button

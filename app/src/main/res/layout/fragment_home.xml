@@ -43,7 +43,8 @@
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:id="@+id/topic"
@@ -54,38 +55,16 @@
                     android:drawableRight="@drawable/next"
                     android:fontFamily="@font/dmsan"
                     android:padding="5dp"
-                    android:text="New Post"
+                    android:text="Feed."
                     android:textAlignment="center"
                     android:textColor="@color/design_default_color_error"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecyclerView_MPhoto"
+                    android:id="@+id/RecyclerView_home"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp" />
-
-                <TextView
-                    android:id="@+id/topic2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:fontFamily="@font/dmsan"
-                    android:padding="5dp"
-                    android:text="Most Popular"
-                    android:textAlignment="center"
-                    android:textColor="@color/design_default_color_error"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecyclerView_Pphoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:paddingTop="15dp" />
+                    android:layout_height="match_parent" />
 
 
             </LinearLayout>

@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectempty.AddActivity
-import com.example.projectempty.MphotoAdapter
 import com.example.projectempty.MphotoModel
-import com.example.projectempty.PphotoAdapter
 import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentHomeBinding
+import com.example.projectempty.homeAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
@@ -32,17 +32,15 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     var mAuth: FirebaseAuth? = null
+    lateinit var database: FirebaseDatabase
     var home_text_wellcome: TextView? = null
     val myref = Firebase.database.reference
-    lateinit var RecyclerViewMphoto:RecyclerView
-    lateinit var RecyclerViewPphoto:RecyclerView
-    lateinit var database: FirebaseDatabase
-    lateinit var databaseReferenceMphoto: DatabaseReference
-    lateinit var databaseReferencePphoto: DatabaseReference
-    lateinit var responseMphoto:MutableList<MphotoModel>
-    lateinit var responsePphoto:MutableList<MphotoModel>
-    private var MphotoAdapter: MphotoAdapter? = null
-    private var PphotoAdapter: PphotoAdapter? = null
+    lateinit var RecyclerViewhome:RecyclerView
+    lateinit var databaseReferencehome: DatabaseReference
+    lateinit var responsehome:MutableList<MphotoModel>
+    private var homeAdapter: homeAdapter? = null
+
+
     lateinit var fab:FloatingActionButton
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,25 +85,19 @@ class HomeFragment : Fragment() {
             .child("User name").addValueEventListener(postListener)
 
 
-        RecyclerViewMphoto = view.findViewById<RecyclerView>(R.id.RecyclerView_MPhoto)
-        RecyclerViewPphoto = view.findViewById<RecyclerView>(R.id.RecyclerView_Pphoto)
+        RecyclerViewhome = view.findViewById<RecyclerView>(R.id.RecyclerView_home)
+
         fab = view.findViewById(R.id.fab)
 
-        //Mphoto นะครับเธอ
-        RecyclerViewMphoto.layoutManager = LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL, false)
-        databaseReferenceMphoto = database.getReference("Mphoto")
-        responseMphoto = mutableListOf()
-        MphotoAdapter = MphotoAdapter(responseMphoto as ArrayList<MphotoModel>)
-        RecyclerViewMphoto.adapter = MphotoAdapter
+        //home photo database นะครับเตง
+        //RecyclerViewhome.layoutManager = LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL, false)
+        RecyclerViewhome.layoutManager = GridLayoutManager(context,2)
+        databaseReferencehome = database.getReference("home")
+        responsehome = mutableListOf()
+        homeAdapter = homeAdapter(responsehome as ArrayList<MphotoModel>)
+        RecyclerViewhome.adapter = homeAdapter
 
 
-
-        //Pphoto ค้าบสุดหล่อ
-        RecyclerViewPphoto.layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)
-        databaseReferencePphoto = database.getReference("Pphoto")
-        responsePphoto = mutableListOf()
-        PphotoAdapter = PphotoAdapter(responsePphoto as ArrayList<MphotoModel>)
-        RecyclerViewPphoto.adapter = PphotoAdapter
 
 
         fab.setOnClickListener{
@@ -122,10 +114,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun onBindingFirebase() {
-        databaseReferenceMphoto.addChildEventListener(object : ChildEventListener {
+        databaseReferencehome.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                this@HomeFragment.responseMphoto.add(snapshot.getValue(MphotoModel::class.java)!!)
-                MphotoAdapter!!.notifyDataSetChanged()
+                this@HomeFragment.responsehome.add(snapshot.getValue(MphotoModel::class.java)!!)
+                homeAdapter!!.notifyDataSetChanged()
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -145,28 +137,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        databaseReferencePphoto.addChildEventListener(object : ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                this@HomeFragment.responsePphoto.add(snapshot.getValue(MphotoModel::class.java)!!)
-                PphotoAdapter!!.notifyDataSetChanged()
-            }
 
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
 
     }
 
