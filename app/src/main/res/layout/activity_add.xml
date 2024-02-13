@@ -13,6 +13,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,39 +34,50 @@
             android:id="@+id/addTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_edittext"
             android:ems="10"
             android:hint="Add your Title."
             android:inputType="text"
-            android:padding="10dp"
+            android:padding="12dp"
             android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/previewimage"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="254dp"
+            android:layout_height="260dp"
+            android:layout_margin="10dp"
             android:background="@drawable/placeholder"
-            android:scaleType="center" />
+            android:baselineAlignBottom="false"
+            android:scaleType="center"
+            />
 
         <Button
             android:id="@+id/buttonUpload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="UPLOAD" />
+            android:layout_width="169dp"
+            android:layout_height="43dp"
+            android:background="@drawable/back_navigation"
+            android:text="UPLOAD"
+            android:textColor="#FFFFFF" />
 
         <EditText
             android:id="@+id/addDetail"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_edittext"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Add your Detail."
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:padding="25dp" />
 
         <Button
             android:id="@+id/buttonSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SUBMIT" />
+            android:layout_width="319dp"
+            android:layout_height="51dp"
+            android:background="@drawable/back_navigation"
+            android:text="SUBMIT"
+            android:textColorHint="#000000" />
 
 
     </LinearLayout>

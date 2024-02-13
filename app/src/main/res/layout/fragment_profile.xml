@@ -7,34 +7,10 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <Button
-        android:id="@+id/profile_button_logout"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="123dp"
-        android:layout_height="53dp"
-        android:layout_marginBottom="72dp"
-        android:backgroundTint="#E91E63"
-        android:text="Logout"
-        android:textColor="#E91E63"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/profile_text_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
-        android:text="User Name"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/button3"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="272dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
@@ -46,14 +22,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/profile_button_logout"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="123dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="84dp"
+        android:backgroundTint="#E91E63"
+        android:text="Logout"
+        android:textColor="#E91E63"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button1"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="552dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
-        android:text="Source of Funding Info"
+        android:text="Settings"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
@@ -64,7 +53,7 @@
         android:id="@+id/button5"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="416dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
@@ -79,7 +68,7 @@
         android:id="@+id/button4"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="468dp"
+        android:layout_marginTop="484dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
@@ -91,14 +80,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button2"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="536dp"
+        android:layout_marginTop="344dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
-        android:text="Settings"
+        android:text="Source of Funding Info"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
@@ -109,10 +98,32 @@
         android:id="@+id/imageView3"
         android:layout_width="192dp"
         android:layout_height="141dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:src="@drawable/profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profile_text_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="228dp"
+        android:text="exaple123@gmail.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profile_text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:text="User Name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

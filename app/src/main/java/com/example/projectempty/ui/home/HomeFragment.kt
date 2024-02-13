@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
         // ดึงข้อมูลแบบ Realtime
         myref.child("Account")
             .child(newMail)
-            .child("Full name").addValueEventListener(postListener)
+            .child("User name").addValueEventListener(postListener)
 
 
         RecyclerViewMphoto = view.findViewById<RecyclerView>(R.id.RecyclerView_MPhoto)

@@ -93,17 +93,16 @@
 
     <ImageButton
         android:id="@+id/login_button_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="335dp"
+        android:background="@drawable/icon_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="47dp"
-        android:layout_height="40dp"
-        android:background="@drawable/icon_back"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

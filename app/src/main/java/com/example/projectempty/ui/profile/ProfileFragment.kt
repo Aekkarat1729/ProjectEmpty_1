@@ -40,7 +40,9 @@ class ProfileFragment : Fragment() {
         val myref = Firebase.database.reference
         val user = mAuth!!.currentUser
         var profile_text_name:TextView? = view.findViewById<TextView>(R.id.profile_text_name)
-        val postListener = object : ValueEventListener {
+        var profile_text_email:TextView? = view.findViewById<TextView>(R.id.profile_text_email)
+        //name
+        val postListener1 = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // ข้อมูลที่ดึงมาอยู่ใน dataSnapshot
                 val value = dataSnapshot.getValue(String::class.java)
@@ -52,18 +54,44 @@ class ProfileFragment : Fragment() {
             }
         }
         //ลบจุด
-        var tempMail:String = user?.email.toString()
-        val mark = '.'
-        var newMail = ""
-        for (char in tempMail){
-            if(char != mark){
-                newMail += char
+        var tempMail1:String = user?.email.toString()
+        val mark1 = '.'
+        var newMail1 = ""
+        for (char in tempMail1){
+            if(char != mark1){
+                newMail1 += char
             }
         }
         // ดึงข้อมูลแบบ Realtime
         myref.child("Account")
-            .child(newMail)
-            .child("User name").addValueEventListener(postListener)
+            .child(newMail1)
+            .child("Full name").addValueEventListener(postListener1)
+
+        //email
+        val postListener2 = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // ข้อมูลที่ดึงมาอยู่ใน dataSnapshot
+                val value = dataSnapshot.getValue(String::class.java)
+                Log.d(TAG, "Value is: $value")
+                profile_text_email?.setText(value)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", databaseError.toException())
+            }
+        }
+        //ลบจุด
+        var tempMail2:String = user?.email.toString()
+        val mark2 = '.'
+        var newMail2 = ""
+        for (char in tempMail2){
+            if(char != mark2){
+                newMail2 += char
+            }
+        }
+        // ดึงข้อมูลแบบ Realtime
+        myref.child("Account")
+            .child(newMail2)
+            .child("Email").addValueEventListener(postListener2)
 
 
         val signoutButton = view.findViewById<Button>(R.id.profile_button_logout)
