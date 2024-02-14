@@ -32,14 +32,16 @@ class ForgetActivity : AppCompatActivity() {
         buttonReset!!.setOnClickListener{
             val email = textEmailForget.text.toString()
             if(TextUtils.isEmpty(email)){
-                Toast.makeText(applicationContext,"Please Enter your Email!!",Toast.LENGTH_SHORT).show()
+                textEmailForget?.setError("Please Enter your Email!!")
             }else{
                 mAuth!!.sendPasswordResetEmail(email).addOnCompleteListener{
                     task -> if(task.isSuccessful){
                     Toast.makeText(this@ForgetActivity,"Please Check your Email",Toast.LENGTH_SHORT).show()
-
+                    startActivity(Intent(this@ForgetActivity,
+                        ResetPassword::class.java))
+                    finish()
                 }else{
-                    Toast.makeText(this@ForgetActivity,"Fail to send reset email password",Toast.LENGTH_SHORT).show()
+                    textEmailForget?.setError("Fail to send reset email password")
 
                 }
                 }

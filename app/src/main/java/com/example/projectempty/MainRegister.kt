@@ -40,11 +40,6 @@ class MainRegister : AppCompatActivity() {
         init()
         mAuth = FirebaseAuth.getInstance()
 
-        if (mAuth!!.currentUser != null) {
-            startActivity(Intent(this@MainRegister,
-                MainActivity::class.java))
-            finish()
-        }
         register_button_account?.setOnClickListener {
             val user:String = register_edit_user!!.text.toString().trim()
             val pass:String = register_edit_password!!.text.toString().trim()
@@ -88,8 +83,11 @@ class MainRegister : AppCompatActivity() {
                 databaseReference.child("Full name").setValue(name)
                 Toast.makeText(this,"Create account successfully!",Toast.LENGTH_LONG).show()
                 Log.d(TAG, "Create account successfully!")
-                 startActivity(Intent(this@MainRegister, MainActivity::class.java))
-                finish()
+                if (mAuth!!.currentUser != null) {
+                    startActivity(Intent(this@MainRegister,
+                        MainActivity::class.java))
+                    finish()
+                }
             }
 
             if(validateEmail() == true && validatePassword() == true){
