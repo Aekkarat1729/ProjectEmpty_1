@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ProjectEmpty"
         tools:targetApi="31">
         <activity
+            android:name=".homefeed"
+            android:exported="false" />
+        <activity
             android:name=".ResetPassword"
             android:exported="false" />
         <activity

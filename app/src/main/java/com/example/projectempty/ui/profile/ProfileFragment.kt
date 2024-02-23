@@ -1,5 +1,6 @@
 package com.example.projectempty.ui.profile
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,14 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.projectempty.AddActivity
+import com.example.projectempty.ForgetActivity
+import com.example.projectempty.MainLogin
 import com.example.projectempty.MainStart
 import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentHomeBinding
 import com.example.projectempty.databinding.FragmentProfileBinding
+import com.example.projectempty.homefeed
 import com.example.projectempty.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -27,12 +33,20 @@ class ProfileFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private val TAG = "ProfileFragment"
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        var profile_button_homefeed:ImageView? = view.findViewById(R.id.profile_button_homefeed)
+        var profile_button_information:Button? = view.findViewById<Button>(R.id.profile_button_information)
+
+        profile_button_homefeed?.setOnClickListener{
+            val intent = Intent(context, homefeed::class.java)
+            startActivity(intent)
+        }
 
         //ดึงข้อมูล user
         var mAuth: FirebaseAuth? = null
@@ -112,7 +126,6 @@ class ProfileFragment : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
     }
-
 }
 
 

@@ -82,7 +82,10 @@ class MainLogin : AppCompatActivity() {
         }
 
         //กรณีกดปุ่ ม Back
-        login_button_back?.setOnClickListener { onBackPressed() }
+        login_button_back?.setOnClickListener {
+            startActivity(Intent(this@MainLogin,
+                MainStart::class.java))
+        }
     }
     fun init(){
         login_button_back = findViewById(R.id.login_button_back)

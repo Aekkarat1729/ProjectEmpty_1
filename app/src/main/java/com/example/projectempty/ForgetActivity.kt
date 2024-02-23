@@ -37,9 +37,6 @@ class ForgetActivity : AppCompatActivity() {
                 mAuth!!.sendPasswordResetEmail(email).addOnCompleteListener{
                     task -> if(task.isSuccessful){
                     Toast.makeText(this@ForgetActivity,"Please Check your Email",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@ForgetActivity,
-                        ResetPassword::class.java))
-                    finish()
                 }else{
                     textEmailForget?.setError("Fail to send reset email password")
 
