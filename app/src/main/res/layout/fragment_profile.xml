@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/homefeed_button_editprofile"
         android:layout_width="342dp"
         android:layout_height="60dp"
         android:layout_marginTop="552dp"

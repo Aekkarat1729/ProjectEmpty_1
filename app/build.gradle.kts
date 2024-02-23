@@ -59,5 +59,6 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation ("com.google.android.material:material:1.4.0")
 
 }
