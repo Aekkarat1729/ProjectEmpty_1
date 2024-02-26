@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -37,6 +38,7 @@ class homefeed : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
     private var imageName: String? = null
     private lateinit var firebaseStorage: FirebaseStorage
+    lateinit var fab: FloatingActionButton
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +50,12 @@ class homefeed : AppCompatActivity() {
         firebaseStorage = FirebaseStorage.getInstance()
 
         initViews()
+
+        //+
+        fab.setOnClickListener{
+            val intent = Intent(this@homefeed,AddActivity::class.java)
+            startActivity(intent)
+        }
 
         // สร้าง DatabaseReference ของ Firebase Realtime Database
         val user = mAuth!!.currentUser
@@ -99,6 +107,7 @@ class homefeed : AppCompatActivity() {
         homefeed_button_editprofile = findViewById(R.id.homefeed_button_editprofile)
         RecyclerViewhomefeed = findViewById(R.id.RecyclerView_homefeed)
         profile = findViewById(R.id.homefeed_image_profile)
+        fab = findViewById(R.id.fab)
     }
 
     private fun onBindingFirebase() {
