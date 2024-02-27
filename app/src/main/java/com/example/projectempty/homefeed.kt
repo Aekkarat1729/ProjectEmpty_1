@@ -94,8 +94,18 @@ class homefeed : AppCompatActivity() {
             startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST)
         }
 
+        val user1 = mAuth!!.currentUser
+        var tempMail1:String = user1?.email.toString()
+        val mark = '.'
+        var newMail = ""
+        for (char in tempMail1){
+            if(char != mark){
+                newMail += char
+            }
+        }
+
         RecyclerViewhomefeed.layoutManager = GridLayoutManager(this@homefeed, 2)
-        databaseReferencehomefeed = database.getReference("home")
+        databaseReferencehomefeed = database.getReference("Account").child(newMail).child("Posts")
         responsehome = mutableListOf()
         homeAdapter = homeAdapter(responsehome as ArrayList<MphotoModel>)
         RecyclerViewhomefeed.adapter = homeAdapter

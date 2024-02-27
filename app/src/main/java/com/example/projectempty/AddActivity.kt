@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
@@ -14,11 +13,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.lang.Exception
 import java.util.UUID
 
 class AddActivity : AppCompatActivity() {
@@ -28,6 +27,7 @@ class AddActivity : AppCompatActivity() {
     lateinit var addDetail:TextView
     lateinit var previewimage:ImageView
     lateinit var storageReference: StorageReference
+    var mAuth: FirebaseAuth? = null
 
     var PICK_IMAGE_REQUEST = 111
     var filePath: Uri? = null
@@ -48,6 +48,7 @@ class AddActivity : AppCompatActivity() {
         addTitle = findViewById(R.id.addTitle)
         addDetail = findViewById(R.id.addDetail)
         previewimage = findViewById(R.id.previewimage)
+        mAuth = FirebaseAuth.getInstance()
 
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -98,21 +99,33 @@ class AddActivity : AppCompatActivity() {
     }
 
     private fun submitData() {
-        if(TextUtils.isEmpty(addTitle.text)){
-            Toast.makeText(this@AddActivity,"Please Enter your Title..",Toast.LENGTH_SHORT).show()
-        }else{
-            val databaseReference = firebaseDatabase.reference.child("home").push()
+        if (TextUtils.isEmpty(addTitle.text)) {
+            Toast.makeText(this@AddActivity, "Please Enter your Title..", Toast.LENGTH_SHORT).show()
+        } else {
+            // ข้อมูลไม่ว่าง
+            val user = mAuth!!.currentUser
+            val tempMail: String = user?.email.toString().replace(".", "")
+            val databaseReference = firebaseDatabase.reference.child("Account").child(tempMail).child("Posts").push()
+            val databaseReferenceHome = firebaseDatabase.reference.child("home").push()
+
             databaseReference.child("key").setValue(databaseReference.key)
             databaseReference.child("title").setValue(addTitle.text.toString())
             databaseReference.child("detail").setValue(addDetail.text.toString())
-            databaseReference.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/"+imageName+"?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
-            Toast.makeText(this@AddActivity,"Upload Finish",Toast.LENGTH_SHORT).show()
-            val intentMain = Intent(this,ListActivity::class.java)
+            databaseReference.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
+            databaseReference.child("email").setValue(tempMail)
+
+            databaseReferenceHome.child("key").setValue(databaseReferenceHome.key)
+            databaseReferenceHome.child("title").setValue(addTitle.text.toString())
+            databaseReferenceHome.child("detail").setValue(addDetail.text.toString())
+            databaseReferenceHome.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
+            databaseReferenceHome.child("email").setValue(tempMail)
+
+            Toast.makeText(this@AddActivity, "Upload Finish", Toast.LENGTH_SHORT).show()
+            val intentMain = Intent(this, ListActivity::class.java)
             startActivity(intentMain)
-
         }
-
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
