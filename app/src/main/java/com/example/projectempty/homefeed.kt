@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +19,8 @@ import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.*
@@ -25,6 +28,7 @@ import java.util.*
 class homefeed : AppCompatActivity() {
 
     private var homefeed_button_editprofile: Button? = null
+    private var homefeed_textview_name:TextView? = null
     private lateinit var RecyclerViewhomefeed: RecyclerView
     private lateinit var databaseReferencehomefeed: DatabaseReference
     private lateinit var responsehome: MutableList<MphotoModel>
@@ -110,6 +114,26 @@ class homefeed : AppCompatActivity() {
         homeAdapter = homeAdapter(responsehome as ArrayList<MphotoModel>)
         RecyclerViewhomefeed.adapter = homeAdapter
 
+        //name
+        mAuth = FirebaseAuth.getInstance()
+        val myref = Firebase.database.reference
+        val postListener1 = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // ข้อมูลที่ดึงมาอยู่ใน dataSnapshot
+                val value = dataSnapshot.getValue(String::class.java)
+                Log.d(TAG, "Value is: $value")
+                homefeed_textview_name?.text = value
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", databaseError.toException())
+            }
+        }
+        // ดึงข้อมูลแบบ Realtime
+        myref.child("Account")
+            .child(newMail)
+            .child("Full name").addValueEventListener(postListener1)
+
         onBindingFirebase()
     }
 
@@ -118,6 +142,7 @@ class homefeed : AppCompatActivity() {
         RecyclerViewhomefeed = findViewById(R.id.RecyclerView_homefeed)
         profile = findViewById(R.id.homefeed_image_profile)
         fab = findViewById(R.id.fab)
+        homefeed_textview_name = findViewById(R.id.homefeed_textview_name)
     }
 
     private fun onBindingFirebase() {

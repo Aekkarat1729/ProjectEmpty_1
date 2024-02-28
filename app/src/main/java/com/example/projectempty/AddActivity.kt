@@ -106,7 +106,8 @@ class AddActivity : AppCompatActivity() {
             val user = mAuth!!.currentUser
             val tempMail: String = user?.email.toString().replace(".", "")
             val databaseReference = firebaseDatabase.reference.child("Account").child(tempMail).child("Posts").push()
-            val databaseReferenceHome = firebaseDatabase.reference.child("home").push()
+            val tempreference:String = databaseReference.key.toString().trim()
+            val databaseReferenceHome = firebaseDatabase.reference.child("home").child(tempreference)
 
             databaseReference.child("key").setValue(databaseReference.key)
             databaseReference.child("title").setValue(addTitle.text.toString())
@@ -114,7 +115,7 @@ class AddActivity : AppCompatActivity() {
             databaseReference.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
             databaseReference.child("email").setValue(tempMail)
 
-            databaseReferenceHome.child("key").setValue(databaseReferenceHome.key)
+            databaseReferenceHome.child("key").setValue(tempreference)
             databaseReferenceHome.child("title").setValue(addTitle.text.toString())
             databaseReferenceHome.child("detail").setValue(addDetail.text.toString())
             databaseReferenceHome.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
@@ -140,5 +141,6 @@ class AddActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 
 }
