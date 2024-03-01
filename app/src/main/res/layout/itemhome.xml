@@ -5,9 +5,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="20dp"
+    android:layout_marginTop="5dp"
 
+    android:layout_marginBottom="5dp"
     app:cardCornerRadius="20dp">
 
     <LinearLayout
@@ -15,14 +15,13 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="15dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="160dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
             android:background="@drawable/placeholder"
             android:scaleType="centerCrop" />
 
@@ -31,23 +30,42 @@
             android:id="@+id/textTitleItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:padding="2dp"
             android:text="TextView"
-            android:textAlignment="center"
-
+            android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textUseritem"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="User"
-            android:textAlignment="center"
-            android:textColor="#B5B5B5"
-            android:textSize="10sp" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/itemUser"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile" />
+
+
+            <TextView
+                android:id="@+id/textUseritem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:text="User"
+                android:textAlignment="textStart"
+                android:textColor="#B5B5B5"
+                android:textSize="12sp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

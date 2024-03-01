@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="407dp"
         android:layout_height="722dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,12 +25,13 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homefeed_image_profile"
                 android:layout_width="111dp"
                 android:layout_height="111dp"
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/profile" />
 
             <TextView

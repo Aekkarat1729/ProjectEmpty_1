@@ -11,4 +11,5 @@ class ViewHolder (View: View) : RecyclerView.ViewHolder(View){
     var imageView: ImageView = View.findViewById(R.id.imageView)
     var cardView:CardView = View.findViewById(R.id.cardView)
     var textUseritem: TextView = View.findViewById(R.id.textUseritem)
+    var itemUser: ImageView = View.findViewById(R.id.itemUser)
 }
