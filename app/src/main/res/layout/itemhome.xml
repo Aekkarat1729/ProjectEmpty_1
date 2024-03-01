@@ -13,32 +13,41 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/black"
         android:orientation="vertical"
-        android:background="@color/black">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="160dp"
             android:layout_height="200dp"
-            android:layout_margin="10dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:background="@drawable/placeholder"
-            android:scaleType="centerCrop"
-            />
-
+            android:scaleType="centerCrop" />
 
 
         <TextView
             android:id="@+id/textTitleItem"
-            android:layout_width="162dp"
-            android:layout_height="28dp"
-            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
+            android:padding="2dp"
             android:text="TextView"
             android:textAlignment="center"
-            android:textColor="@color/white"
 
+            android:textColor="@color/white"
             android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textUseritem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="User"
+            android:textAlignment="center"
+            android:textColor="#B5B5B5"
+            android:textSize="10sp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

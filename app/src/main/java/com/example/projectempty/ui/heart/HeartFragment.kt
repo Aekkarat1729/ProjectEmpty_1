@@ -1,6 +1,5 @@
 package com.example.projectempty.ui.hot
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,14 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projectempty.AddActivity
 import com.example.projectempty.MphotoAdapter
 import com.example.projectempty.MphotoModel
 import com.example.projectempty.PphotoAdapter
 import com.example.projectempty.R
 import com.example.projectempty.databinding.FragmentHomeBinding
 import com.example.projectempty.ui.home.HomeViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -109,13 +106,7 @@ class HeartFragment : Fragment() {
         PphotoAdapter = PphotoAdapter(responsePphoto as ArrayList<MphotoModel>)
         RecyclerViewPphoto.adapter = PphotoAdapter
 
-
-
-
         onBindingFirebase()
-
-
-
 
         return view
     }
@@ -168,7 +159,6 @@ class HeartFragment : Fragment() {
         })
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

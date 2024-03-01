@@ -51,8 +51,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:drawableLeft="@drawable/back"
-                    android:drawableRight="@drawable/next"
                     android:fontFamily="@font/dmsan"
                     android:padding="5dp"
                     android:text="Feed."
