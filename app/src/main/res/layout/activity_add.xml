@@ -49,11 +49,11 @@
             android:id="@+id/previewimage"
             android:layout_width="254dp"
             android:layout_height="260dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/placeholder"
             android:baselineAlignBottom="false"
-            android:scaleType="center"
 
-            />
+            android:scaleType="centerCrop" />
 
         <Button
             android:id="@+id/buttonUpload"

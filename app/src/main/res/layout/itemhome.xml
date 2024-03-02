@@ -64,8 +64,16 @@
                 android:textAlignment="textStart"
                 android:textColor="#B5B5B5"
                 android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/icon_heart" />
+
         </LinearLayout>
 
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

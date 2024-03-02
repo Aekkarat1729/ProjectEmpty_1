@@ -13,4 +13,6 @@ class ViewHolder (View: View) : RecyclerView.ViewHolder(View){
     var cardView:CardView = View.findViewById(R.id.cardView)
     var textUseritem: TextView = View.findViewById(R.id.textUseritem)
     var itemUser: ImageView = View.findViewById(R.id.itemUser)
+    var itemLike: ImageView = View.findViewById(R.id.imageView3)
+    var likes: Int = 0
 }

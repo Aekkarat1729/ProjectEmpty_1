@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -24,6 +25,11 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dataModel = MphotoList[position]
         val tempMail = dataModel.email
+        var mAuth: FirebaseAuth? = null
+        mAuth = FirebaseAuth.getInstance()
+        val user = mAuth!!.currentUser
+        val tempMailUser:String = user?.email.toString().replace(".", "") // ทำการลบจุดออก
+
         holder.textTitleItem.text = dataModel.title
 
         //user
@@ -66,6 +72,42 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
             }
         })
 
+        // การเปลี่ยนรูปภาพของ itemLike เมื่อมีการคลิก
+        holder.itemLike.setOnClickListener {
+            // ตรวจสอบสถานะปัจจุบันของไลค์
+            val currentLikes = dataModel.likes ?: 0 // หากไม่มีค่าให้เริ่มต้นที่ 0
+
+            if (dataModel.isLiked) {
+                // ถ้าไลค์อยู่แล้วให้ยกเลิกไลค์
+                dataModel.isLiked = false
+                dataModel.likes = currentLikes - 1
+            } else {
+                // ถ้ายังไม่ได้ไลค์ให้ทำการไลค์
+                dataModel.isLiked = true
+                dataModel.likes = currentLikes + 1
+            }
+
+            // อัปเดตข้อมูลไลค์ใน Firebase Realtime Database
+            val likeRef = Firebase.database.reference
+                .child("Account")
+                .child(tempMail.toString())
+                .child("Posts")
+                .child(dataModel.key.toString())
+                .child("Like")
+                .child("Total User").push()
+
+            likeRef.setValue(tempMailUser)
+
+            // เปลี่ยนรูปภาพของ itemLike ตามสถานะปัจจุบันของไลค์
+            val currentImageResource = if (dataModel.isLiked) {
+                R.drawable.fullheart // ถ้าถูกใจแล้วใช้รูปภาพเต็มหัวใจ
+            } else {
+                R.drawable.icon_heart // ถ้ายังไม่ถูกใจใช้รูปภาพหัวใจว่างเปล่า
+            }
+            holder.itemLike.setImageResource(currentImageResource)
+        }
+
+
         holder.cardView.setOnClickListener(View.OnClickListener { view ->
             val readActivity = Intent(view.context, ContentActivityhome::class.java)
             readActivity.putExtra("key", dataModel.key)
@@ -73,6 +115,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
             Log.d("M planner", dataModel.title.toString())
         })
     }
+
 
     override fun getItemCount(): Int {
         return MphotoList.size

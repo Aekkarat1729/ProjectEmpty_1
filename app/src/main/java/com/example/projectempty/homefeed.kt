@@ -1,6 +1,7 @@
 package com.example.projectempty
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +31,8 @@ class homefeed : AppCompatActivity() {
 
     private var homefeed_button_editprofile: Button? = null
     private var homefeed_textview_name:TextView? = null
+    private var homefeed_textView_countPosts:TextView? = null
+    private var homefeed_textView_editName:TextView? = null
     private lateinit var RecyclerViewhomefeed: RecyclerView
     private lateinit var databaseReferencehomefeed: DatabaseReference
     private lateinit var responsehome: MutableList<MphotoModel>
@@ -36,7 +40,7 @@ class homefeed : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private lateinit var database: FirebaseDatabase
     private lateinit var profile: ImageView
-
+    private var postCount = 0
     private val PICK_IMAGE_REQUEST = 111
     private var filePath: Uri? = null
     private var progressDialog: ProgressDialog? = null
@@ -48,12 +52,32 @@ class homefeed : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homefeed)
+        supportActionBar?.hide()
 
         mAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         firebaseStorage = FirebaseStorage.getInstance()
 
         initViews()
+
+        //Edit Name
+        homefeed_textView_editName?.setOnClickListener {
+            // สร้าง AlertDialog หรือ Custom Dialog สำหรับให้ผู้ใช้ป้อนชื่อใหม่
+            val builder = AlertDialog.Builder(this)
+            val editText = EditText(this)
+            builder.setView(editText)
+            builder.setTitle("Enter Your Name")
+            builder.setPositiveButton("OK") { dialog, which ->
+                val newName = editText.text.toString()
+                if (newName.isNotEmpty()) {
+                    updateName(newName)
+                } else {
+                    Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show()
+                }
+            }
+            builder.setNegativeButton("Cancel") { dialog, which -> dialog.dismiss() }
+            builder.show()
+        }
 
         //+
         fab.setOnClickListener{
@@ -137,12 +161,15 @@ class homefeed : AppCompatActivity() {
         onBindingFirebase()
     }
 
+
     private fun initViews() {
         homefeed_button_editprofile = findViewById(R.id.homefeed_button_editprofile)
         RecyclerViewhomefeed = findViewById(R.id.RecyclerView_homefeed)
         profile = findViewById(R.id.homefeed_image_profile)
         fab = findViewById(R.id.fab)
         homefeed_textview_name = findViewById(R.id.homefeed_textview_name)
+        homefeed_textView_countPosts = findViewById(R.id.homefeed_textView_countPosts)
+        homefeed_textView_editName = findViewById(R.id.homefeed_textView_editName)
     }
 
     private fun onBindingFirebase() {
@@ -150,6 +177,8 @@ class homefeed : AppCompatActivity() {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 responsehome.add(snapshot.getValue(MphotoModel::class.java)!!)
                 homeAdapter!!.notifyDataSetChanged()
+                postCount++
+                homefeed_textView_countPosts?.text = "Posts: $postCount"
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -161,6 +190,7 @@ class homefeed : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {}
         })
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -222,6 +252,22 @@ class homefeed : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this@homefeed, "Error: $e", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun updateName(newName: String) {
+        // อัปเดตชื่อในฐานข้อมูล Firebase Realtime Database
+        val user = mAuth!!.currentUser
+        val tempMail: String = user?.email.toString().replace(".", "") // ทำการลบจุดออก
+        val databaseReference = database.reference.child("Account").child(tempMail).child("Full name")
+        databaseReference.setValue(newName)
+            .addOnSuccessListener {
+                // อัปเดต TextView ด้วยชื่อใหม่
+                homefeed_textview_name?.text = newName
+                Toast.makeText(this, "Name updated successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to update name: $e", Toast.LENGTH_SHORT).show()
             }
     }
 }

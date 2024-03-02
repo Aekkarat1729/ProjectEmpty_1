@@ -1,7 +1,7 @@
 package com.example.projectempty
 
 class MphotoModel(var title: String?, var Image: String?,var key: String?
-    ,var detail: String?,var email: String?) {
+    ,var detail: String?,var email: String?,var isLiked: Boolean = false, var likes: Int = 0) {
     // Default constructor
     constructor() : this(null, null, null, null,null)
 
