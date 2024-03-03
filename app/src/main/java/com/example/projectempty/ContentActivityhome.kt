@@ -36,7 +36,7 @@ class ContentActivityhome : AppCompatActivity() {
         firebaseDatabase = FirebaseDatabase.getInstance()
 
         var intent = intent
-        var getkey = intent.getStringExtra("key")
+        var getkey = intent.getStringExtra("key") // ดึง key ของโพสที่ถูกคลิกมา
         val myref = Firebase.database.reference
 
         var databaseReference = firebaseDatabase.getReference("home/$getkey")
@@ -75,6 +75,6 @@ class ContentActivityhome : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-
     }
+
 }

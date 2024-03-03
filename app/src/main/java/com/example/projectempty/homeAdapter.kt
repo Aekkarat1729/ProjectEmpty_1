@@ -73,17 +73,26 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
         holder.cardView.setOnClickListener{
             val intent = Intent(holder.itemView.context, ContentActivityhome::class.java)
-            // อาจจะต้องส่งข้อมูลที่จำเป็นไปด้วย อย่าลืมเพิ่มตามความต้องการ
+            intent.putExtra("key", dataModel.key) // ส่ง key ของโพสไปยัง ContentActivityhome
             holder.itemView.context.startActivity(intent)
         }
 
-        // itemLike
+        // itemLike, currentUserLikeRef, likeCountRef ไม่ได้เปลี่ยนแปลงจากเดิม เรียกใช้เหมือนเดิม
+
+
+    // itemLike
         holder.itemLike.setOnClickListener {
             if (dataModel.isLiked) {
                 // ถ้าไลค์อยู่แล้วให้ยกเลิกไลค์
                 dataModel.isLiked = false
 
                 // ลบโหนด tempMailUser ออก
+                val likeRefHome = Firebase.database.reference
+                    .child("home")
+                    .child(dataModel.key.toString())
+                    .child("Like")
+                    .child(tempMailUser)
+
                 val likeRef = Firebase.database.reference
                     .child("Account")
                     .child(tempMail.toString())
@@ -92,12 +101,19 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                     .child("Like")
                     .child(tempMailUser)
 
+                likeRefHome.removeValue()
                 likeRef.removeValue()
             } else {
                 // ถ้ายังไม่ได้ไลค์ให้ทำการไลค์
                 dataModel.isLiked = true
 
                 // เพิ่มโหนด tempMailUser เข้าไป
+                val likeRefHome = Firebase.database.reference
+                    .child("home")
+                    .child(dataModel.key.toString())
+                    .child("Like")
+                    .child(tempMailUser)
+
                 val likeRef = Firebase.database.reference
                     .child("Account")
                     .child(tempMail.toString())
@@ -106,6 +122,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                     .child("Like")
                     .child(tempMailUser)
 
+                likeRefHome.setValue("Like")
                 likeRef.setValue("Like")
             }
 
