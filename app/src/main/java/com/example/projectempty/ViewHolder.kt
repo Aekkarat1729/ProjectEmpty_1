@@ -14,5 +14,5 @@ class ViewHolder (View: View) : RecyclerView.ViewHolder(View){
     var textUseritem: TextView = View.findViewById(R.id.textUseritem)
     var itemUser: ImageView = View.findViewById(R.id.itemUser)
     var itemLike: ImageView = View.findViewById(R.id.imageView3)
-    var likes: Int = 0
+    var itemcountLike: TextView = View.findViewById(R.id.item_countLike)
 }

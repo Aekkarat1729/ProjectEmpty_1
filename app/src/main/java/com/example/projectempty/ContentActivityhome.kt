@@ -27,7 +27,6 @@ class ContentActivityhome : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_content)
 
-
         textContenttitle = findViewById(R.id.textContenttitle)
         imageViewContent = findViewById(R.id.imageViewContent)
         textContentDetail = findViewById(R.id.textContentDetail)

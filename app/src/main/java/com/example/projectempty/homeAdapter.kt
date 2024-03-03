@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -72,31 +71,43 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
             }
         })
 
-        // การเปลี่ยนรูปภาพของ itemLike เมื่อมีการคลิก
-        holder.itemLike.setOnClickListener {
-            // ตรวจสอบสถานะปัจจุบันของไลค์
-            val currentLikes = dataModel.likes ?: 0 // หากไม่มีค่าให้เริ่มต้นที่ 0
+        holder.cardView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, ContentActivityhome::class.java)
+            // อาจจะต้องส่งข้อมูลที่จำเป็นไปด้วย อย่าลืมเพิ่มตามความต้องการ
+            holder.itemView.context.startActivity(intent)
+        }
 
+        // itemLike
+        holder.itemLike.setOnClickListener {
             if (dataModel.isLiked) {
                 // ถ้าไลค์อยู่แล้วให้ยกเลิกไลค์
                 dataModel.isLiked = false
-                dataModel.likes = currentLikes - 1
+
+                // ลบโหนด tempMailUser ออก
+                val likeRef = Firebase.database.reference
+                    .child("Account")
+                    .child(tempMail.toString())
+                    .child("Posts")
+                    .child(dataModel.key.toString())
+                    .child("Like")
+                    .child(tempMailUser)
+
+                likeRef.removeValue()
             } else {
                 // ถ้ายังไม่ได้ไลค์ให้ทำการไลค์
                 dataModel.isLiked = true
-                dataModel.likes = currentLikes + 1
+
+                // เพิ่มโหนด tempMailUser เข้าไป
+                val likeRef = Firebase.database.reference
+                    .child("Account")
+                    .child(tempMail.toString())
+                    .child("Posts")
+                    .child(dataModel.key.toString())
+                    .child("Like")
+                    .child(tempMailUser)
+
+                likeRef.setValue("Like")
             }
-
-            // อัปเดตข้อมูลไลค์ใน Firebase Realtime Database
-            val likeRef = Firebase.database.reference
-                .child("Account")
-                .child(tempMail.toString())
-                .child("Posts")
-                .child(dataModel.key.toString())
-                .child("Like")
-                .child("Total User").push()
-
-            likeRef.setValue(tempMailUser)
 
             // เปลี่ยนรูปภาพของ itemLike ตามสถานะปัจจุบันของไลค์
             val currentImageResource = if (dataModel.isLiked) {
@@ -105,17 +116,54 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 R.drawable.icon_heart // ถ้ายังไม่ถูกใจใช้รูปภาพหัวใจว่างเปล่า
             }
             holder.itemLike.setImageResource(currentImageResource)
+
         }
 
+    // ตรวจสอบว่าผู้ใช้เป็นส่วนหนึ่งของ Like หรือไม่
+        val currentUserLikeRef = Firebase.database.reference
+            .child("Account")
+            .child(tempMail.toString())
+            .child("Posts")
+            .child(dataModel.key.toString())
+            .child("Like")
+            .child(tempMailUser)
 
-        holder.cardView.setOnClickListener(View.OnClickListener { view ->
-            val readActivity = Intent(view.context, ContentActivityhome::class.java)
-            readActivity.putExtra("key", dataModel.key)
-            view.context.startActivity(readActivity)
-            Log.d("M planner", dataModel.title.toString())
+        currentUserLikeRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // ถ้ามี email ของผู้ใช้อยู่ใน Like
+                    holder.itemLike.setImageResource(R.drawable.fullheart) // ใช้ใจเต็ม
+                } else {
+                    // ถ้าไม่มี email ของผู้ใช้อยู่ใน Like
+                    holder.itemLike.setImageResource(R.drawable.icon_heart) // ใช้ใจว่าง
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("homeAdapter", "Failed to check user like: ${error.message}")
+            }
         })
-    }
 
+// ดึงข้อมูลจาก Firebase Realtime Database เพื่อนับจำนวนไลค์
+        val likeCountRef = Firebase.database.reference
+            .child("Account")
+            .child(tempMail.toString())
+            .child("Posts")
+            .child(dataModel.key.toString())
+            .child("Like")
+
+        likeCountRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val likeCount = snapshot.childrenCount.toInt() // นับจำนวนโหนดทั้งหมดภายใน "Like"
+                holder.itemcountLike.text = likeCount.toString() + " Like" // แสดงจำนวนไลค์ใน TextView
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("homeAdapter", "Failed to retrieve like count: ${error.message}")
+            }
+        })
+
+    }
 
     override fun getItemCount(): Int {
         return MphotoList.size
