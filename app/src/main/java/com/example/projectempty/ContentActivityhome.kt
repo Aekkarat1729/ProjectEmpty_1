@@ -6,14 +6,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 
 class ContentActivityhome : AppCompatActivity() {
     private lateinit var textContentTitle: TextView
@@ -50,8 +51,6 @@ class ContentActivityhome : AppCompatActivity() {
         val myRef = firebaseDatabase.reference
         val databaseReference = firebaseDatabase.getReference("home/$getkey")
 
-        databaseReferenceComment = firebaseDatabase.getReference("home/$getkey/Comment")
-
         commentAdapter = CommentAdapter(ArrayList())
         recyclerViewContent.adapter = commentAdapter
 
@@ -59,6 +58,17 @@ class ContentActivityhome : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 textContentTitle.text = snapshot.child("title").value.toString()
                 textContentDetail.text = snapshot.child("detail").value.toString()
+                var ImageUrl:String = snapshot.child("Image").value.toString()
+
+                if (!ImageUrl.isNullOrEmpty()) {
+                    // โหลดรูปภาพจาก URL ด้วย Glide หรือ Picasso หรือวิธีอื่นๆ
+                    Glide.with(this@ContentActivityhome)
+                        .load(ImageUrl)
+                        .into(imageViewContent)
+                } else {
+                    // ถ้าไม่มี URL ของรูปภาพ ให้ทำการกำหนดรูปภาพเริ่มต้นหรือตัวแทน
+                   imageViewContent.setImageResource(R.drawable.placeholder) // เปลี่ยน placeholder_image เป็นรูปภาพที่คุณต้องการให้แสดงเมื่อไม่มีรูปใน Realtime Database
+                }
 
                 val email = snapshot.child("email").value.toString()
                 val postListener = object : ValueEventListener {
@@ -77,11 +87,6 @@ class ContentActivityhome : AppCompatActivity() {
                 myRef.child("Account")
                     .child(email)
                     .child("Full name").addValueEventListener(postListener)
-
-                Picasso.get().load(snapshot.child("Image").value.toString())
-                    .error(R.drawable.placeholder)
-                    .placeholder(R.drawable.placeholder)
-                    .into(imageViewContent)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -91,12 +96,16 @@ class ContentActivityhome : AppCompatActivity() {
             }
         })
 
+        databaseReferenceComment = firebaseDatabase.getReference("home/$getkey/Comment")
+
         buttonComment.setOnClickListener {
             val commentText = addComment.text.toString().trim()
             if (commentText.isNotEmpty()) {
                 val currentUserEmail = firebaseAuth.currentUser?.email?.replace(".", "")
-                databaseReferenceComment.push().child(currentUserEmail.toString()).setValue(commentText)
+                val databaseReferenceCommentPush = databaseReferenceComment.push()
+                databaseReferenceCommentPush.child("email").setValue(currentUserEmail.toString())
                     .addOnSuccessListener {
+                        databaseReferenceCommentPush.child("comment").setValue(commentText)
                         Toast.makeText(this, "Comment added successfully", Toast.LENGTH_SHORT).show()
                         addComment.text = ""
                     }
@@ -108,6 +117,30 @@ class ContentActivityhome : AppCompatActivity() {
             }
         }
 
+        val commentList = mutableListOf<Comment>()
+        commentAdapter = CommentAdapter(commentList)
+        recyclerViewContent.layoutManager = GridLayoutManager(this@ContentActivityhome, 3)
+        recyclerViewContent.adapter = commentAdapter
 
+        databaseReferenceComment.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val comments = mutableListOf<Comment>()
+                for (commentSnapshot in snapshot.children) {
+                    val email = commentSnapshot.child("email").getValue(String::class.java)
+                    val comment = commentSnapshot.child("comment").getValue(String::class.java)
+                    email?.let { email ->
+                        comment?.let { comment ->
+                            val newComment = Comment(email, comment)
+                            comments.add(newComment)
+                        }
+                    }
+                }
+                commentAdapter.updateComments(comments)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@ContentActivityhome, "Failed to read comments.", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
