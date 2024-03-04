@@ -169,7 +169,7 @@ class HeartFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
 
         RecyclerViewheart.layoutManager = GridLayoutManager(context,2)
-        databaseReferenceheart = database.getReference("home")
+        databaseReferenceheart = database.getReference("heart")
         responseheart = mutableListOf()
         homeAdapter = homeAdapter(responseheart as ArrayList<MphotoModel>)
         RecyclerViewheart.adapter = homeAdapter

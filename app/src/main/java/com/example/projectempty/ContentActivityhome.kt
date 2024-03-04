@@ -98,7 +98,7 @@ class ContentActivityhome : AppCompatActivity() {
         })
 
         databaseReferenceComment = firebaseDatabase.getReference("home/$getkey/Comment")
-        databaseReferenceCommentAccount = firebaseDatabase.getReference("Account")
+
 
         buttonComment.setOnClickListener {
             val commentText = addComment.text.toString().trim()
@@ -111,6 +111,12 @@ class ContentActivityhome : AppCompatActivity() {
                         Toast.makeText(this, "Comment added successfully", Toast.LENGTH_SHORT).show()
                         addComment.text = ""
 
+                        // เพิ่ม comment ลงในโครงสร้างข้อมูลของผู้ใช้
+                        val accountRef = firebaseDatabase.getReference("Account").child(tempMail.toString())
+                        val userPostRef = accountRef.child("Posts").child(getkey.toString()).child("Comments")
+                            .child(databaseReferenceCommentPush.key.toString())
+                        userPostRef.child("email").setValue(currentUserEmail.toString())
+                        userPostRef.child("Comment").setValue(commentText)
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, "Failed to add comment.", Toast.LENGTH_SHORT).show()
@@ -118,8 +124,8 @@ class ContentActivityhome : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter a comment", Toast.LENGTH_SHORT).show()
             }
-
         }
+
 
         val commentList = mutableListOf<Comment>()
         commentAdapter = CommentAdapter(commentList)

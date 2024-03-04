@@ -81,7 +81,6 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
         // itemLike, currentUserLikeRef, likeCountRef ไม่ได้เปลี่ยนแปลงจากเดิม เรียกใช้เหมือนเดิม
 
-    // itemLike
         holder.itemLike.setOnClickListener {
             if (dataModel.isLiked) {
                 // ถ้าไลค์อยู่แล้วให้ยกเลิกไลค์
@@ -104,6 +103,10 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
                 likeRefHome.removeValue()
                 likeRefAccount.removeValue()
+
+                // ลบข้อมูลโพสต์จากโหนด "heart"
+                val heartRef = Firebase.database.reference.child("heart").child(dataModel.key.toString())
+                heartRef.removeValue()
             } else {
                 // ถ้ายังไม่ได้ไลค์ให้ทำการไลค์
                 dataModel.isLiked = true
@@ -126,26 +129,12 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 likeRefHome.setValue("Like")
                 likeRefAccount.setValue("Like")
 
-                database = FirebaseDatabase.getInstance()
-                val databaseReference = database.reference.child("Account")
-                    .child(tempMailUser)
-                    .child("Posts")
-                    .child(dataModel.key.toString())
-                databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var Image = dataSnapshot.child("Image").value.toString()
-                        var detail = dataSnapshot.child("detail").value.toString()
-                        var email = dataSnapshot.child("email").value.toString()
-                        var key = dataSnapshot.child("key").value.toString()
-                        var title = dataSnapshot.child("title").value.toString()
+                // เพิ่มข้อมูลโพสต์ไปยังโหนด "heart"
+                val heartRef = Firebase.database.reference.child("heart").child(dataModel.key.toString())
+                heartRef.setValue(dataModel)
 
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        // กรณีเกิดข้อผิดพลาดในการอ่านค่าจาก Realtime Database
-                        Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
-                    }
-                })
+                heartRef.child("Like")
+                    .child(tempMailUser).setValue("Like")
             }
 
             // เปลี่ยนรูปภาพของ itemLike ตามสถานะปัจจุบันของไลค์
@@ -155,10 +144,11 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 R.drawable.icon_heart // ถ้ายังไม่ถูกใจใช้รูปภาพหัวใจว่างเปล่า
             }
             holder.itemLike.setImageResource(currentImageResource)
-
         }
 
-    // ตรวจสอบว่าผู้ใช้เป็นส่วนหนึ่งของ Like หรือไม่
+
+
+        // ตรวจสอบว่าผู้ใช้เป็นส่วนหนึ่งของ Like หรือไม่
         val currentUserLikeRef = Firebase.database.reference
             .child("Account")
             .child(tempMail.toString())
