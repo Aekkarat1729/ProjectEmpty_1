@@ -39,12 +39,11 @@
                     android:background="@drawable/back_navigation"
                     android:fontFamily="@font/dmsan"
                     android:gravity="center"
-                    android:text="Hello Admin"
+                    android:text="Hello Admin."
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/topic"

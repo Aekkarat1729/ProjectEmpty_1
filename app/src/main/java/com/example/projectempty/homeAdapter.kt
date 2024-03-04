@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -23,6 +24,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dataModel = MphotoList[position]
+        lateinit var database: FirebaseDatabase
         val tempMail = dataModel.email
         var mAuth: FirebaseAuth? = null
         mAuth = FirebaseAuth.getInstance()
@@ -79,7 +81,6 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
         // itemLike, currentUserLikeRef, likeCountRef ไม่ได้เปลี่ยนแปลงจากเดิม เรียกใช้เหมือนเดิม
 
-
     // itemLike
         holder.itemLike.setOnClickListener {
             if (dataModel.isLiked) {
@@ -93,7 +94,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                     .child("Like")
                     .child(tempMailUser)
 
-                val likeRef = Firebase.database.reference
+                val likeRefAccount = Firebase.database.reference
                     .child("Account")
                     .child(tempMail.toString())
                     .child("Posts")
@@ -102,7 +103,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                     .child(tempMailUser)
 
                 likeRefHome.removeValue()
-                likeRef.removeValue()
+                likeRefAccount.removeValue()
             } else {
                 // ถ้ายังไม่ได้ไลค์ให้ทำการไลค์
                 dataModel.isLiked = true
@@ -114,7 +115,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                     .child("Like")
                     .child(tempMailUser)
 
-                val likeRef = Firebase.database.reference
+                val likeRefAccount = Firebase.database.reference
                     .child("Account")
                     .child(tempMail.toString())
                     .child("Posts")
@@ -123,7 +124,28 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                     .child(tempMailUser)
 
                 likeRefHome.setValue("Like")
-                likeRef.setValue("Like")
+                likeRefAccount.setValue("Like")
+
+                database = FirebaseDatabase.getInstance()
+                val databaseReference = database.reference.child("Account")
+                    .child(tempMailUser)
+                    .child("Posts")
+                    .child(dataModel.key.toString())
+                databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        var Image = dataSnapshot.child("Image").value.toString()
+                        var detail = dataSnapshot.child("detail").value.toString()
+                        var email = dataSnapshot.child("email").value.toString()
+                        var key = dataSnapshot.child("key").value.toString()
+                        var title = dataSnapshot.child("title").value.toString()
+
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        // กรณีเกิดข้อผิดพลาดในการอ่านค่าจาก Realtime Database
+                        Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+                    }
+                })
             }
 
             // เปลี่ยนรูปภาพของ itemLike ตามสถานะปัจจุบันของไลค์

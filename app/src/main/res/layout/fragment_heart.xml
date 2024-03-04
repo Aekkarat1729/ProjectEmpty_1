@@ -55,7 +55,7 @@
                     android:drawableRight="@drawable/next"
                     android:fontFamily="@font/dmsan"
                     android:padding="5dp"
-                    android:text="New Post"
+                    android:text="Posts You Like"
                     android:textAlignment="center"
                     android:textColor="@color/design_default_color_error"
                     android:textSize="20sp"
@@ -63,30 +63,9 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecyclerView_Mphoto"
+                    android:id="@+id/RecyclerView_heart"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/topic2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:fontFamily="@font/dmsan"
-                    android:padding="5dp"
-                    android:text="Most Popular"
-                    android:textAlignment="center"
-                    android:textColor="@color/design_default_color_error"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/RecyclerView_Pphoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:paddingTop="15dp" />
 
 
             </LinearLayout>

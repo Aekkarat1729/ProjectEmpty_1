@@ -24,6 +24,7 @@ class ContentActivityhome : AppCompatActivity() {
     private lateinit var addComment: TextView
     private lateinit var buttonComment: Button
     private lateinit var databaseReferenceComment: DatabaseReference
+    private lateinit var databaseReferenceCommentAccount: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerViewContent: RecyclerView
     private lateinit var commentAdapter: CommentAdapter
@@ -97,6 +98,7 @@ class ContentActivityhome : AppCompatActivity() {
         })
 
         databaseReferenceComment = firebaseDatabase.getReference("home/$getkey/Comment")
+        databaseReferenceCommentAccount = firebaseDatabase.getReference("Account")
 
         buttonComment.setOnClickListener {
             val commentText = addComment.text.toString().trim()
@@ -108,6 +110,7 @@ class ContentActivityhome : AppCompatActivity() {
                         databaseReferenceCommentPush.child("comment").setValue(commentText)
                         Toast.makeText(this, "Comment added successfully", Toast.LENGTH_SHORT).show()
                         addComment.text = ""
+
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, "Failed to add comment.", Toast.LENGTH_SHORT).show()
@@ -115,6 +118,7 @@ class ContentActivityhome : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter a comment", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         val commentList = mutableListOf<Comment>()
