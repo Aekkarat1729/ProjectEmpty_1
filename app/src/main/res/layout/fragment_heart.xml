@@ -32,7 +32,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_text_wellcome"
+                    android:id="@+id/heart_text_wellcome"
                     android:layout_width="match_parent"
                     android:layout_height="53dp"
                     android:layout_margin="10dp"
@@ -51,11 +51,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:drawableLeft="@drawable/back"
-                    android:drawableRight="@drawable/next"
                     android:fontFamily="@font/dmsan"
                     android:padding="5dp"
-                    android:text="Posts You Like"
+                    android:text="Posts You Like."
                     android:textAlignment="center"
                     android:textColor="@color/design_default_color_error"
                     android:textSize="20sp"
@@ -65,7 +63,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/RecyclerView_heart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp" />
 
 
             </LinearLayout>

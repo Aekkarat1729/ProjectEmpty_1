@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projectempty.AddActivity
 import com.example.projectempty.MphotoModel
 import com.example.projectempty.R
-import com.example.projectempty.databinding.FragmentHomeBinding
 import com.example.projectempty.homeAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +28,6 @@ import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
     var mAuth: FirebaseAuth? = null
     lateinit var database: FirebaseDatabase
     var home_text_wellcome: TextView? = null
@@ -53,7 +51,7 @@ class HomeFragment : Fragment() {
 
 
         val user = mAuth!!.currentUser
-        home_text_wellcome = view.findViewById<TextView>(R.id.home_text_wellcome)
+        home_text_wellcome = view.findViewById<TextView>(R.id.heart_text_wellcome)
 
 
         val postListener = object : ValueEventListener {
@@ -133,10 +131,6 @@ class HomeFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
     companion object {
         private const val TAG = "HomeFragment"
     }
