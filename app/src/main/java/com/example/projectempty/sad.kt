@@ -1,7 +1,9 @@
 package com.example.projectempty
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,6 +26,9 @@ class sad : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var sad_text_wellcome: TextView
     lateinit var mAuth: FirebaseAuth
+    var home_happy: Button? = null
+    var home_sad: Button? = null
+    var home_love: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -34,6 +39,17 @@ class sad : AppCompatActivity() {
         val user = mAuth!!.currentUser
         val myref = Firebase.database.reference
         val tempMailUser:String = user?.email.toString().replace(".", "") // ทำการลบจุดออก
+
+
+        home_sad?.setOnClickListener {
+            startActivity(Intent(this@sad, sad::class.java))
+        }
+        home_happy?.setOnClickListener {
+            startActivity(Intent(this@sad, happy::class.java))
+        }
+        home_love?.setOnClickListener {
+            startActivity(Intent(this@sad, love::class.java))
+        }
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -89,5 +105,8 @@ class sad : AppCompatActivity() {
     fun init(){
         RecyclerViewsad = findViewById(R.id.RecyclerView_sad)
         sad_text_wellcome = findViewById(R.id.sad_text_wellcome)
+        home_happy = findViewById(R.id.home_happy)
+        home_sad = findViewById(R.id.home_sad)
+        home_love = findViewById(R.id.home_love)
     }
 }

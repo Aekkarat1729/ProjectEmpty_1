@@ -24,6 +24,7 @@ class love : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var sad_text_wellcome: TextView
     lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()

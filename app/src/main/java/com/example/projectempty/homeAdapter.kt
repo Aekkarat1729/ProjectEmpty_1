@@ -33,6 +33,7 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
         holder.textTitleItem.text = dataModel.title
 
+
         //user
         val myref = Firebase.database.reference
         val postListener = object : ValueEventListener {
@@ -257,7 +258,9 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
 
 
 
+
     }
+
 
     override fun getItemCount(): Int {
         return MphotoList.size

@@ -5,6 +5,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7A7A7A"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
@@ -43,21 +44,43 @@
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:id="@+id/topic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:fontFamily="@font/dmsan"
-                    android:padding="5dp"
-                    android:text="Sad."
-                    android:textAlignment="center"
-                    android:textColor="@color/design_default_color_error"
-                    android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/home_sad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:backgroundTint="#7A7A7A"
+                        android:text="Sad"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <Button
+                        android:id="@+id/home_love"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:backgroundTint="#FF72A2"
+                        android:text="Love" />
+
+                    <Button
+                        android:id="@+id/home_happy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:backgroundTint="#8BC34A"
+                        android:text="Happy" />
+                </LinearLayout>
 
 
                 <androidx.recyclerview.widget.RecyclerView
