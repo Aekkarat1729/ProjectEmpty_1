@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contact">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/admintext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Privacy Policy"
+                    android:textAlignment="center"
+                    android:textColor="@color/RedPink"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Personal Data: "
+                    android:textColor="#E91E63"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView7ans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="      We may collect personal data from users in various ways, including interactions with the app. Users may be asked for personal data such as name, email address, or other personal information. Users can always refuse to provide personal data except when they may prevent access to activities related to the attached app."
+
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/textViewcl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Non-Personal Information: "
+                    android:textColor="#E91E63"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="      We may collect non-personal identification information about users when they interact with the app. Non-personal identification information may include the type of device and technical information about users' means of connection to the app, such as the operating system and the Internet service providers utilized and other similar information."
+
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/textViewname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="How We Use Collected Information:"
+                    android:textColor="#E91E63"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewname2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Our app may collect and use personal data for the following purposes:"
+                    android:textColor="#E91E63"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textViewNameAns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="      To improve customer service: Information you provide helps us respond to your customer service requests and support needs more efficiently.
+To enhance user experience: We may use information to understand how users as a group use the services and resources provided in the app.
+To improve the app: We may use the feedback you provide to improve our products and services.
+To periodically send emails: We may use the email address to respond to inquiries, questions, and/or other requests from users."
+
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="How We Protect Your Information:"
+                    android:textColor="#E91E63"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView11Ans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="      We adopt appropriate data collection, storage, and processing practices and security measures to protect against unauthorized access, alteration"
+
+                    android:textColor="#000000" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

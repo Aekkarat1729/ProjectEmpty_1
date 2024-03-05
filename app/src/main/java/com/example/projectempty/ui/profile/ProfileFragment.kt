@@ -16,10 +16,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.projectempty.Faq
 import com.example.projectempty.MainStart
 import com.example.projectempty.R
+import com.example.projectempty.contact
 import com.example.projectempty.homefeed
 import com.example.projectempty.language
+import com.example.projectempty.privacy
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -40,6 +43,9 @@ class ProfileFragment : Fragment() {
     private var imageName: String? = null
     private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var profile_button_ct:Button
+    private lateinit var profile_button_contact:Button
+    private lateinit var profile_button_faq:Button
+    private lateinit var profile_button_privacy:Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -49,8 +55,10 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         var profile_button_homefeed: ImageView? = view.findViewById(R.id.profile_button_homefeed)
-        var profile_button_information: Button? = view.findViewById<Button>(R.id.profile_button_information)
+        var profile_button_faq: Button? = view.findViewById<Button>(R.id.profile_button_faq)
         var profile_button_ct: Button? = view.findViewById<Button>(R.id.profile_button_ct)
+        var profile_button_contact:Button? = view.findViewById(R.id.profile_button_contact)
+        var profile_button_privacy:Button? = view.findViewById(R.id.profile_button_privacy)
 
         profile_button_homefeed?.setOnClickListener {
             val intent = Intent(context, homefeed::class.java)
@@ -165,6 +173,21 @@ class ProfileFragment : Fragment() {
             val intent = Intent(requireContext(), language::class.java)
             startActivity(intent)
         }
+
+        profile_button_contact?.setOnClickListener {
+            val intent = Intent(requireContext(), contact::class.java)
+            startActivity(intent)
+        }
+
+        profile_button_faq?.setOnClickListener {
+            val intent = Intent(requireContext(), Faq::class.java)
+            startActivity(intent)
+        }
+        profile_button_privacy?.setOnClickListener {
+            val intent = Intent(requireContext(), privacy::class.java)
+            startActivity(intent)
+        }
+
 
         return view
     }
