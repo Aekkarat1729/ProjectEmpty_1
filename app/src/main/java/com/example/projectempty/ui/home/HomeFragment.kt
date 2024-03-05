@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
 
 
         val user = mAuth!!.currentUser
-        home_text_wellcome = view.findViewById<TextView>(R.id.heart_text_wellcome)
+        home_text_wellcome = view.findViewById<TextView>(R.id.hot_text_wellcome)
 
 
         val postListener = object : ValueEventListener {

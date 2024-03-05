@@ -172,7 +172,7 @@ class HeartFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_heart, container, false)
         RecyclerViewheart = view.findViewById(R.id.RecyclerView_heart)
-        heart_text_wellcome = view.findViewById(R.id.heart_text_wellcome)
+        heart_text_wellcome = view.findViewById(R.id.hot_text_wellcome)
 
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth!!.currentUser
@@ -200,7 +200,7 @@ class HeartFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
 
         RecyclerViewheart.layoutManager = GridLayoutManager(context,2)
-        databaseReferenceheart = database.getReference("heart")
+        databaseReferenceheart = database.getReference("Account").child(tempMailUser).child("heart")
         responseheart = mutableListOf()
         homeAdapter = homeAdapter(responseheart as ArrayList<MphotoModel>)
         RecyclerViewheart.adapter = homeAdapter

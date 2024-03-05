@@ -45,16 +45,17 @@ class ContentActivityhome : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         val intent = intent
-        val getkey = intent.getStringExtra("key")
         val tempMail = firebaseAuth.currentUser?.email?.replace(".", "")
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
         val myRef = firebaseDatabase.reference
-        val databaseReference = firebaseDatabase.getReference("home/$getkey")
+
 
         commentAdapter = CommentAdapter(ArrayList())
         recyclerViewContent.adapter = commentAdapter
 
+        val getkey = intent.getStringExtra("key")
+        val databaseReference = firebaseDatabase.getReference("home/$getkey")
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 textContentTitle.text = snapshot.child("title").value.toString()

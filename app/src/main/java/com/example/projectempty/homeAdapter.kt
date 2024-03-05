@@ -105,7 +105,9 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 likeRefAccount.removeValue()
 
                 // ลบข้อมูลโพสต์จากโหนด "heart"
-                val heartRef = Firebase.database.reference.child("heart").child(dataModel.key.toString())
+                val heartRef = Firebase.database.reference.child("Account")
+                    .child(tempMailUser)
+                    .child("heart").child(dataModel.key.toString())
                 heartRef.removeValue()
             } else {
                 // ถ้ายังไม่ได้ไลค์ให้ทำการไลค์
@@ -130,7 +132,9 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 likeRefAccount.setValue("Like")
 
                 // เพิ่มข้อมูลโพสต์ไปยังโหนด "heart"
-                val heartRef = Firebase.database.reference.child("heart").child(dataModel.key.toString())
+                val heartRef = Firebase.database.reference.child("Account")
+                    .child(tempMailUser)
+                    .child("heart").child(dataModel.key.toString())
                 heartRef.setValue(dataModel)
 
                 heartRef.child("Like")
@@ -191,6 +195,71 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 Log.e("homeAdapter", "Failed to retrieve like count: ${error.message}")
             }
         })
+
+        var totalUsers = 0
+
+        val accountRef = Firebase.database.reference.child("Account")
+
+        accountRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(accountSnapshot: DataSnapshot) {
+                totalUsers = accountSnapshot.childrenCount.toInt() // นับจำนวน children (ผู้ใช้) ทั้งหมดในโหนด "Account"
+
+                val databaseReference = Firebase.database.reference.child("home")
+                databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(postsSnapshot: DataSnapshot) {
+                        // หายอดไลค์ทั้งหมดของโพสต์
+                        var totalLikes = 0L
+                        for (postSnapshot in postsSnapshot.children) {
+                            val likesSnapshot = postSnapshot.child("Like")
+                            totalLikes += likesSnapshot.childrenCount
+                        }
+
+                        // คำนวณเมื่อมียอดไลค์ถึง 70% ของจำนวนผู้ใช้งานทั้งหมด
+                        val seventyPercentLikes = totalUsers * 0.7
+
+                        if (totalLikes >= seventyPercentLikes) {
+                            // เมื่อมียอดไลค์ถึง 70% ของจำนวนผู้ใช้งานทั้งหมด
+                            // นำโพสต์ที่มียอดไลค์มากกว่าหรือเท่ากับ 70% ไปยังโหนด Hot
+                            for (postSnapshot in postsSnapshot.children) {
+                                val likesSnapshot = postSnapshot.child("Like")
+                                val postLikes = likesSnapshot.childrenCount
+
+                                if (postLikes >= seventyPercentLikes) {
+                                    // โพสต์มีจำนวนไลค์มากกว่าหรือเท่ากับ 70%
+                                    val postKey = postSnapshot.key.toString()
+                                    val postData = postSnapshot.value.toString()
+
+                                    val hotRef = Firebase.database.reference.child("Hot").child(postKey)
+                                    hotRef.child("title").setValue(postSnapshot.child("title").value.toString())
+                                    hotRef.child("Image").setValue(postSnapshot.child("Image").value.toString())
+                                    hotRef.child("key").setValue(postSnapshot.child("key").value.toString())
+                                    hotRef.child("email").setValue(postSnapshot.child("email").value.toString())
+                                    hotRef.child("detail").setValue(postSnapshot.child("detail").value.toString())
+                                }
+                            }
+                        } else {
+                            // ถ้าไม่ถึง 70% ให้ลบโพสต์นี้ออกจากโหนด Hot
+                            for (postSnapshot in postsSnapshot.children) {
+                                val postKey = postSnapshot.key.toString()
+                                Firebase.database.reference.child("Hot").child(postKey).removeValue()
+                            }
+                        }
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("homeAdapter", "Failed to retrieve posts: ${error.message}")
+                    }
+                })
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("homeAdapter", "Failed to retrieve user count: ${error.message}")
+            }
+        })
+
+
+
 
     }
 
