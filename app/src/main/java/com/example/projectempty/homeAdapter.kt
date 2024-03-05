@@ -207,27 +207,24 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                 val databaseReference = Firebase.database.reference.child("home")
                 databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(postsSnapshot: DataSnapshot) {
-                        // หายอดไลค์ทั้งหมดของโพสต์
+
                         var totalLikes = 0L
                         for (postSnapshot in postsSnapshot.children) {
                             val likesSnapshot = postSnapshot.child("Like")
                             totalLikes += likesSnapshot.childrenCount
                         }
 
-                        // คำนวณเมื่อมียอดไลค์ถึง 70% ของจำนวนผู้ใช้งานทั้งหมด
+
                         val seventyPercentLikes = totalUsers * 0.7
 
                         if (totalLikes >= seventyPercentLikes) {
-                            // เมื่อมียอดไลค์ถึง 70% ของจำนวนผู้ใช้งานทั้งหมด
-                            // นำโพสต์ที่มียอดไลค์มากกว่าหรือเท่ากับ 70% ไปยังโหนด Hot
+
                             for (postSnapshot in postsSnapshot.children) {
                                 val likesSnapshot = postSnapshot.child("Like")
                                 val postLikes = likesSnapshot.childrenCount
 
                                 if (postLikes >= seventyPercentLikes) {
-                                    // โพสต์มีจำนวนไลค์มากกว่าหรือเท่ากับ 70%
                                     val postKey = postSnapshot.key.toString()
-                                    val postData = postSnapshot.value.toString()
 
                                     val hotRef = Firebase.database.reference.child("Hot").child(postKey)
                                     hotRef.child("title").setValue(postSnapshot.child("title").value.toString())
@@ -238,7 +235,6 @@ class homeAdapter(val MphotoList: List<MphotoModel>) : RecyclerView.Adapter<View
                                 }
                             }
                         } else {
-                            // ถ้าไม่ถึง 70% ให้ลบโพสต์นี้ออกจากโหนด Hot
                             for (postSnapshot in postsSnapshot.children) {
                                 val postKey = postSnapshot.key.toString()
                                 Firebase.database.reference.child("Hot").child(postKey).removeValue()

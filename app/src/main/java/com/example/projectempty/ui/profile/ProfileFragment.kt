@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.example.projectempty.MainStart
 import com.example.projectempty.R
 import com.example.projectempty.homefeed
+import com.example.projectempty.language
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,6 +39,7 @@ class ProfileFragment : Fragment() {
     private var progressDialog: ProgressDialog? = null
     private var imageName: String? = null
     private lateinit var firebaseStorage: FirebaseStorage
+    private lateinit var profile_button_ct:Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -48,6 +50,7 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         var profile_button_homefeed: ImageView? = view.findViewById(R.id.profile_button_homefeed)
         var profile_button_information: Button? = view.findViewById<Button>(R.id.profile_button_information)
+        var profile_button_ct: Button? = view.findViewById<Button>(R.id.profile_button_ct)
 
         profile_button_homefeed?.setOnClickListener {
             val intent = Intent(context, homefeed::class.java)
@@ -156,6 +159,11 @@ class ProfileFragment : Fragment() {
             val intent = Intent(requireActivity(), MainStart::class.java)
             startActivity(intent)
             requireActivity().finish()
+        }
+
+        profile_button_ct?.setOnClickListener {
+            val intent = Intent(requireContext(), language::class.java)
+            startActivity(intent)
         }
 
         return view

@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -47,6 +48,7 @@ class homefeed : AppCompatActivity() {
     private var imageName: String? = null
     private lateinit var firebaseStorage: FirebaseStorage
     lateinit var fab: FloatingActionButton
+    private  var gotosetting:ImageButton? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -159,6 +161,11 @@ class homefeed : AppCompatActivity() {
             .child("Full name").addValueEventListener(postListener1)
 
         onBindingFirebase()
+
+        gotosetting = findViewById(R.id.gotosetting)
+
+
+
     }
 
 

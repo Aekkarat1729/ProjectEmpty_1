@@ -4,4 +4,51 @@
     <string name="title_heart">Heart</string>
     <string name="title_hot">Hot</string>
     <string name="title_profile">Profile</string>
+
+
+
+
+
+    <string name="go">go</string>
+
+    <!--    Profile Fragment-->
+    <string name="Change_language">Change language</string>
+    <string name="Faq">FAQs</string>
+    <string name="Privacy">Privacy</string>
+    <string name="contact">Contact Us</string>
+
+    <!--    home Fragment & Like fragment-->
+    <string name="Hello">Hello</string>
+    <string name="Feed">Feed.</string>
+    <string name="Posts_You_Like">Posts You Like.</string>
+
+    <!--    Start Page-->
+    <string name="Create_Account">Create Account</string>
+    <string name="Login">Login</string>
+
+
+    <!--    login Page-->
+    <string name="Login_an_account">Login an account</string>
+    <string name="Invest_and_double_your_income_now">Invest and double your income now</string>
+    <string name="Username_Email_address">Username/Email address</string>
+    <string name="Password">Password</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="Forgot_your_password">Forgot your password ?</string>
+
+    <!--    Register Page-->
+    <string name="Create_an_account">Create an account</string>
+    <string name="Invest_and_double_you_income_now">Invest and double your income now</string>
+    <string name="Username">Username</string>
+    <string name="Full_Name">Full Name</string>
+    <string name="Email_address">Email-address</string>
+    <string name="Re_Password">Re-Password</string>
+    <string name="Already_have_an_account">Already have an account?</string>
+
+    <!--    Forgot Page-->
+    <string name="Forget_your_password">Forget your password ?</string>
+    <string name="To_Reset_Password_Enter_Your_Email">To Reset Password, Enter Your Email...</string>
+    <string name="Forget_Password">Forget Password</string>
+
+
+
 </resources>

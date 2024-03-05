@@ -24,6 +24,15 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <ImageButton
+                android:id="@+id/gotosetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="20dp"
+                android:background="@color/white"
+                app:srcCompat="@drawable/icon_setting2" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homefeed_image_profile"
                 android:layout_width="111dp"
@@ -99,7 +108,8 @@
                 android:id="@+id/RecyclerView_homefeed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
+                android:layout_margin="10dp"/>
+
         </LinearLayout>
     </ScrollView>
 

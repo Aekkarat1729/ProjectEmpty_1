@@ -14,7 +14,7 @@
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
-        android:text="Information"
+        android:text="@string/Faq"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
@@ -35,62 +35,47 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/homefeed_button_editprofile"
-        android:layout_width="342dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="552dp"
-        android:backgroundTint="#FFFFFF"
-        android:drawableEnd="@drawable/next"
-        android:elevation="@android:dimen/thumbnail_width"
-        android:text="Settings"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="342dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="416dp"
-        android:backgroundTint="#FFFFFF"
-        android:drawableEnd="@drawable/next"
-        android:elevation="@android:dimen/thumbnail_width"
-        android:text="Bank Account Info"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/button4"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="484dp"
+        android:layout_marginTop="336dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
-        android:text="Document Info"
+        android:text="@string/Privacy"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/homefeed_textView_editName"
+        android:id="@+id/profile_button_ct"
         android:layout_width="342dp"
         android:layout_height="60dp"
-        android:layout_marginTop="344dp"
+        android:layout_marginTop="404dp"
         android:backgroundTint="#FFFFFF"
         android:drawableEnd="@drawable/next"
         android:elevation="@android:dimen/thumbnail_width"
-        android:text="Source of Funding Info"
+        android:text="@string/Change_language"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/profile_button_contact"
+        android:layout_width="342dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="480dp"
+        android:backgroundTint="#FFFFFF"
+        android:drawableEnd="@drawable/next"
+        android:elevation="@android:dimen/thumbnail_width"
+        android:text="@string/contact"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

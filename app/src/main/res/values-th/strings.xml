@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">เอ็มตี้</string>
+    <string name="title_home">หน้าหลัก</string>
+    <string name="title_heart">ถูกใจ</string>
+    <string name="title_hot">มาแรง</string>
+    <string name="title_profile">โปรไฟล์</string>
+
+    <string name="go">ไป</string>
+
+
+
+
+    <!--    Profile Fragment-->
+    <string name="Change_language">เปลี่ยนภาษา</string>
+    <string name="Faq">คำถามที่พบบ่อย</string>
+    <string name="Privacy">ข้อตกลง</string>
+    <string name="contact">ติดต่อเรา</string>
+
+    <!--    home Fragment & Like fragment-->
+    <string name="Hello">สวัสดี</string>
+    <string name="Feed">ฟีด</string>
+    <string name="Posts_You_Like">โพสต์ที่ถูกใจ</string>
+
+
+    <!--    Start Page-->
+    <string name="Create_Account">สร้างบัญชี</string>
+    <string name="Login">เข้าสู่ระบบ</string>
+
+
+    <!--    login Page-->
+    <string name="Login_an_account">เข้าสู่ระบบ</string>
+    <string name="Invest_and_double_your_income_now">ยินดีต้อนรับ</string>
+    <string name="Username_Email_address">ยูสเซอร์เนม/อีเมล</string>
+    <string name="Password">รหัสผ่าน</string>
+    <string name="LOGIN">เข้าสู่ระบบ</string>
+    <string name="Forgot_your_password">ลืมรหัสผ่าน ?</string>
+
+    <!--    Register Page-->
+    <string name="Create_an_account">สมัครสมาชิก</string>
+    <string name="Invest_and_double_you_income_now">ยินดีต้อนรับ</string>
+    <string name="Username">ยูสเซอร์เนม</string>
+    <string name="Full_Name">ชื่อ-นามสกุล</string>
+    <string name="Email_address">อีเมล</string>
+    <string name="Re_Password">ยืนยันรหัสผ่าน</string>
+    <string name="Already_have_an_account">เป็นสมาชิกอยู่แล้ว ?</string>
+
+    <!--    Forgot Page-->
+    <string name="Forget_your_password">ลืมรหัสผ่าน</string>
+    <string name="To_Reset_Password_Enter_Your_Email">กรอกอีเมลของคุณ เพื่อตั้งรหัสผ่านไหม่</string>
+    <string name="Forget_Password">ส่งอีเมลลืมรหัสผ่าน</string>
+
+
+</resources>
