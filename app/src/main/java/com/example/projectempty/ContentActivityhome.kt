@@ -130,7 +130,7 @@ class ContentActivityhome : AppCompatActivity() {
 
         val commentList = mutableListOf<Comment>()
         commentAdapter = CommentAdapter(commentList)
-        recyclerViewContent.layoutManager = GridLayoutManager(this@ContentActivityhome, 3)
+        recyclerViewContent.layoutManager = GridLayoutManager(this@ContentActivityhome, 2)
         recyclerViewContent.adapter = commentAdapter
 
         databaseReferenceComment.addValueEventListener(object : ValueEventListener {

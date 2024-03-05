@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projectempty.AddActivity
 import com.example.projectempty.MphotoModel
 import com.example.projectempty.R
+import com.example.projectempty.happy
 import com.example.projectempty.homeAdapter
+import com.example.projectempty.love
+import com.example.projectempty.sad
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
@@ -31,6 +35,9 @@ class HomeFragment : Fragment() {
     var mAuth: FirebaseAuth? = null
     lateinit var database: FirebaseDatabase
     var home_text_wellcome: TextView? = null
+    var home_happy: Button? = null
+    var home_sad: Button? = null
+    var home_love: Button? = null
     val myref = Firebase.database.reference
     lateinit var RecyclerViewhome:RecyclerView
     lateinit var databaseReferencehome: DatabaseReference
@@ -52,6 +59,20 @@ class HomeFragment : Fragment() {
 
         val user = mAuth!!.currentUser
         home_text_wellcome = view.findViewById<TextView>(R.id.hot_text_wellcome)
+        home_happy = view.findViewById(R.id.home_happy)
+        home_sad = view.findViewById(R.id.home_sad)
+        home_love = view.findViewById(R.id.home_love)
+
+        home_sad?.setOnClickListener {
+            startActivity(Intent(requireContext(), sad::class.java))
+        }
+        home_happy?.setOnClickListener {
+            startActivity(Intent(requireContext(), happy::class.java))
+        }
+        home_love?.setOnClickListener {
+            startActivity(Intent(requireContext(), love::class.java))
+        }
+
 
 
         val postListener = object : ValueEventListener {
