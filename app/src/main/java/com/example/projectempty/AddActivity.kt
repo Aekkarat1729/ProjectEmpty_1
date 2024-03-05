@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -27,6 +28,10 @@ class AddActivity : AppCompatActivity() {
     lateinit var addDetail:TextView
     lateinit var previewimage:ImageView
     lateinit var storageReference: StorageReference
+    lateinit var checkBox_Sad:CheckBox
+    lateinit var checkBox_Love:CheckBox
+    lateinit var checkBox_Happy:CheckBox
+
     var mAuth: FirebaseAuth? = null
 
     var PICK_IMAGE_REQUEST = 111
@@ -48,6 +53,9 @@ class AddActivity : AppCompatActivity() {
         addTitle = findViewById(R.id.addTitle)
         addDetail = findViewById(R.id.addDetail)
         previewimage = findViewById(R.id.previewimage)
+        checkBox_Sad = findViewById(R.id.checkBox_sad)
+        checkBox_Love = findViewById(R.id.checkBox_love)
+        checkBox_Happy = findViewById(R.id.checkBox_happy)
         mAuth = FirebaseAuth.getInstance()
 
 
@@ -108,6 +116,33 @@ class AddActivity : AppCompatActivity() {
             val databaseReference = firebaseDatabase.reference.child("Account").child(tempMail).child("Posts").push()
             val tempreference:String = databaseReference.key.toString().trim()
             val databaseReferenceHome = firebaseDatabase.reference.child("home").child(tempreference)
+
+            if (checkBox_Sad.isChecked) {
+                val sadRef = firebaseDatabase.reference.child("Sad").child(tempreference)
+                sadRef.child("key").setValue(tempreference)
+                sadRef.child("title").setValue(addTitle.text.toString())
+                sadRef.child("detail").setValue(addDetail.text.toString())
+                sadRef.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
+                sadRef.child("email").setValue(tempMail)
+            }
+
+            if (checkBox_Happy.isChecked) {
+                val happyRef = firebaseDatabase.reference.child("Happy").child(tempreference)
+                happyRef.child("key").setValue(tempreference)
+                happyRef.child("title").setValue(addTitle.text.toString())
+                happyRef.child("detail").setValue(addDetail.text.toString())
+                happyRef.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
+                happyRef.child("email").setValue(tempMail)
+            }
+
+            if (checkBox_Love.isChecked) {
+                val loveRef = firebaseDatabase.reference.child("Love").child(tempreference)
+                loveRef.child("key").setValue(tempreference)
+                loveRef.child("title").setValue(addTitle.text.toString())
+                loveRef.child("detail").setValue(addDetail.text.toString())
+                loveRef.child("Image").setValue("https://firebasestorage.googleapis.com/v0/b/emptyproject-52591.appspot.com/o/$imageName?alt=media&token=6225469d-2231-4898-a986-a2e2d6a1cc96")
+                loveRef.child("email").setValue(tempMail)
+            }
 
             databaseReference.child("key").setValue(databaseReference.key)
             databaseReference.child("title").setValue(addTitle.text.toString())

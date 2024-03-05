@@ -15,6 +15,15 @@
         android:theme="@style/Theme.ProjectEmpty"
         tools:targetApi="31">
         <activity
+            android:name=".love"
+            android:exported="false" />
+        <activity
+            android:name=".happy"
+            android:exported="false" />
+        <activity
+            android:name=".sad"
+            android:exported="false" />
+        <activity
             android:name=".language"
             android:exported="false" />
         <activity

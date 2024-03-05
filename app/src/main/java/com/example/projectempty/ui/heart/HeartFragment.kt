@@ -198,7 +198,6 @@ class HeartFragment : Fragment() {
             .child("User name").addValueEventListener(postListener)
 
         database = FirebaseDatabase.getInstance()
-
         RecyclerViewheart.layoutManager = GridLayoutManager(context,2)
         databaseReferenceheart = database.getReference("Account").child(tempMailUser).child("heart")
         responseheart = mutableListOf()

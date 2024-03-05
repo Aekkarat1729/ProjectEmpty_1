@@ -6,9 +6,6 @@
     <string name="title_profile">Profile</string>
 
 
-
-
-
     <string name="go">go</string>
 
     <!--    Profile Fragment-->
@@ -48,7 +45,6 @@
     <string name="Forget_your_password">Forget your password ?</string>
     <string name="To_Reset_Password_Enter_Your_Email">To Reset Password, Enter Your Email...</string>
     <string name="Forget_Password">Forget Password</string>
-
 
 
 </resources>
