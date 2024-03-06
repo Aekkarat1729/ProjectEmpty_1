@@ -81,7 +81,7 @@ class HomeFragment : Fragment() {
                 val value = dataSnapshot.getValue(String::class.java)
                 Log.d(TAG, "Value is: $value")
 
-                home_text_wellcome?.setText("Hello "+value+".")
+                home_text_wellcome?.setText("Hi! "+value+".")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

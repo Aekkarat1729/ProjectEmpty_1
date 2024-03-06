@@ -18,16 +18,31 @@
             android:name=".language"
             android:exported="false" />
         <activity
-            android:name=".profile_setting"
+            android:name=".homefeed"
             android:exported="false" />
         <activity
-            android:name=".homefeed"
+            android:name=".happy"
+            android:exported="false" />
+        <activity
+            android:name=".love"
+            android:exported="false" />
+        <activity
+            android:name=".sad"
             android:exported="false" />
         <activity
             android:name=".ForgetActivity"
             android:exported="false" />
         <activity
             android:name=".AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contact"
+            android:exported="false" />
+        <activity
+            android:name=".Faq"
+            android:exported="false" />
+        <activity
+            android:name=".privacy"
             android:exported="false" />
         <activity
             android:name=".ContentActivityMphoto"

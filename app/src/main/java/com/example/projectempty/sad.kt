@@ -57,7 +57,7 @@ class sad : AppCompatActivity() {
                 val value = dataSnapshot.getValue(String::class.java)
                 Log.d("sad", "Value is: $value")
 
-                sad_text_wellcome?.setText("Hello "+value+".")
+                sad_text_wellcome?.setText("Hi! "+value+".")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

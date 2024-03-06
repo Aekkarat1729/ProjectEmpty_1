@@ -22,6 +22,7 @@ class ContentActivityhome : AppCompatActivity() {
     private lateinit var textContentDetail: TextView
     private lateinit var contentTextViewContact: TextView
     private lateinit var addComment: TextView
+    private lateinit var content_image_profile: ImageView
     private lateinit var buttonComment: Button
     private lateinit var databaseReferenceComment: DatabaseReference
     private lateinit var databaseReferenceCommentAccount: DatabaseReference
@@ -41,6 +42,7 @@ class ContentActivityhome : AppCompatActivity() {
         addComment = findViewById(R.id.addComment)
         buttonComment = findViewById(R.id.buttonComment)
         recyclerViewContent = findViewById(R.id.RecycleViewContent)
+        content_image_profile = findViewById(R.id.content_image_profile)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -89,6 +91,31 @@ class ContentActivityhome : AppCompatActivity() {
                 myRef.child("Account")
                     .child(email)
                     .child("Full name").addValueEventListener(postListener)
+
+                val postListener1 = object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val value = dataSnapshot.getValue(String::class.java)
+                        if (!ImageUrl.isNullOrEmpty()) {
+                            // โหลดรูปภาพจาก URL ด้วย Glide หรือ Picasso หรือวิธีอื่นๆ
+                            Glide.with(this@ContentActivityhome)
+                                .load(value.toString())
+                                .into(content_image_profile)
+                        } else {
+                            // ถ้าไม่มี URL ของรูปภาพ ให้ทำการกำหนดรูปภาพเริ่มต้นหรือตัวแทน
+                            content_image_profile.setImageResource(R.drawable.profile) // เปลี่ยน placeholder_image เป็นรูปภาพที่คุณต้องการให้แสดงเมื่อไม่มีรูปใน Realtime Database
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        databaseError.toException().let {
+                            Toast.makeText(this@ContentActivityhome, "Failed to read value.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                myRef.child("Account")
+                    .child(email)
+                    .child("Profile").addValueEventListener(postListener1)
             }
 
             override fun onCancelled(error: DatabaseError) {

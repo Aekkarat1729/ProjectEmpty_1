@@ -1,7 +1,9 @@
 package com.example.projectempty
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,6 +26,9 @@ class happy : AppCompatActivity() {
     lateinit var database: FirebaseDatabase
     lateinit var sad_text_wellcome: TextView
     lateinit var mAuth: FirebaseAuth
+    var home_happy: Button? = null
+    var home_sad: Button? = null
+    var home_love: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -35,13 +40,23 @@ class happy : AppCompatActivity() {
         val myref = Firebase.database.reference
         val tempMailUser:String = user?.email.toString().replace(".", "") // ทำการลบจุดออก
 
+        home_sad?.setOnClickListener {
+            startActivity(Intent(this@happy, sad::class.java))
+        }
+        home_happy?.setOnClickListener {
+            startActivity(Intent(this@happy, happy::class.java))
+        }
+        home_love?.setOnClickListener {
+            startActivity(Intent(this@happy, love::class.java))
+        }
+
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // ข้อมูลที่ดึงมาอยู่ใน dataSnapshot
                 val value = dataSnapshot.getValue(String::class.java)
                 Log.d("happy", "Value is: $value")
 
-                sad_text_wellcome?.setText("Hello "+value+".")
+                sad_text_wellcome?.setText("Hi! "+value+".")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -89,5 +104,8 @@ class happy : AppCompatActivity() {
     fun init(){
         RecyclerViewsad = findViewById(R.id.RecyclerView_happy)
         sad_text_wellcome = findViewById(R.id.happy_text_wellcome)
+        home_happy = findViewById(R.id.home_happy)
+        home_sad = findViewById(R.id.home_sad)
+        home_love = findViewById(R.id.home_love)
     }
 }
