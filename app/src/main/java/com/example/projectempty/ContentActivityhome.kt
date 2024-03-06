@@ -2,6 +2,7 @@ package com.example.projectempty
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +30,7 @@ class ContentActivityhome : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var recyclerViewContent: RecyclerView
     private lateinit var commentAdapter: CommentAdapter
+    var content_button_back: ImageButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,9 @@ class ContentActivityhome : AppCompatActivity() {
 
         val firebaseDatabase = FirebaseDatabase.getInstance()
         val myRef = firebaseDatabase.reference
+
+        content_button_back = findViewById(R.id.content_button_back)
+        content_button_back!!.setOnClickListener{ onBackPressed() }
 
 
         commentAdapter = CommentAdapter(ArrayList())

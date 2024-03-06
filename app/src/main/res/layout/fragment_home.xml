@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@color/Rose_kk">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,12 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="53dp"
                     android:layout_margin="10dp"
-                    android:background="@drawable/back_navigation"
+                    android:background="@drawable/back_navigation1"
                     android:fontFamily="@font/dmsan"
                     android:gravity="center"
                     android:text="@string/Hello"
                     android:textAlignment="center"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

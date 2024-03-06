@@ -162,7 +162,7 @@ class homefeed : AppCompatActivity() {
 
         onBindingFirebase()
 
-        gotosetting = findViewById(R.id.gotosetting)
+
 
 
 

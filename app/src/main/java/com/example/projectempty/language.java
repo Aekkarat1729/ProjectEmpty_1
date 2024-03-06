@@ -18,7 +18,7 @@ public class language extends Appcompat
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_language);
-
+        ImageButton back = findViewById(R.id.language_button_back);
         ImageButton en = findViewById(R.id.btn_en);
         ImageButton thai = findViewById(R.id.btn_thai);
         languageManager lang = new languageManager(this);
@@ -39,6 +39,8 @@ public class language extends Appcompat
 
         });
 
+
+        back.setOnClickListener(View -> {onBackPressed();});
 
 
     }

@@ -8,15 +8,16 @@
     android:layout_marginTop="5dp"
 
     android:layout_marginBottom="5dp"
-    android:background="#000000"
-    android:backgroundTint="#000000"
+
+    android:backgroundTint="@color/Rose"
     app:cardCornerRadius="20dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="15dp"
+        >
 
         <ImageView
             android:id="@+id/imageView"
@@ -37,8 +38,9 @@
             android:padding="2dp"
             android:text="TextView"
             android:textAlignment="textStart"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/item_countLike"
@@ -46,8 +48,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="like 2 "
-            android:textColor="#B3B3B3"
-            android:textSize="12sp" />
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,8 +76,9 @@
                 android:layout_weight="1"
                 android:text="User"
                 android:textAlignment="textStart"
-                android:textColor="#B5B5B5"
-                android:textSize="12sp" />
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/imageView3"

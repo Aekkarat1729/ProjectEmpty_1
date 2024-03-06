@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homefeed">
+    tools:context=".homefeed"
+    android:background="@color/Rose_kk">
 
 
     <ScrollView
@@ -24,14 +25,6 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/gotosetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="20dp"
-                android:background="@color/white"
-                app:srcCompat="@drawable/icon_setting2" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homefeed_image_profile"
@@ -41,6 +34,7 @@
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/profile" />
+
 
             <TextView
                 android:id="@+id/homefeed_textview_name"
@@ -82,7 +76,7 @@
                     android:layout_width="158dp"
                     android:layout_height="47dp"
                     android:layout_marginRight="10dp"
-                    android:backgroundTint="#D8D8D8"
+                    android:backgroundTint="#FADDD9"
                     android:includeFontPadding="false"
                     android:text="Change Profile"
                     android:textAppearance="@style/Theme.ProjectEmpty"
@@ -95,7 +89,7 @@
                     android:layout_width="158dp"
                     android:layout_height="47dp"
                     android:layout_marginLeft="10dp"
-                    android:backgroundTint="#D8D8D8"
+                    android:backgroundTint="#FADDD9"
                     android:includeFontPadding="false"
                     android:text="Edit Name"
                     android:textAppearance="@style/Theme.ProjectEmpty"

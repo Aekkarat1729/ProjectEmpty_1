@@ -9,62 +9,70 @@
     android:padding="15dp"
     android:orientation="vertical"
     >
-
-    <LinearLayout
+    <ImageButton
+        android:id="@+id/language_button_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="335dp"
+        android:background="@drawable/icon_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        
-        <ImageButton
-            android:id="@+id/btn_en"
+        android:layout_weight="1">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:background="@drawable/uk"
-
-            ></ImageButton>
-        <ImageButton
-            android:id="@+id/btn_thai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:background="@drawable/thai"
-
-            ></ImageButton>
+            android:orientation="vertical">
 
 
-    </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_en"
+                android:layout_width="199dp"
+                android:layout_height="106dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/uk"></ImageButton>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="English"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textcl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
-            android:text="@string/app_name"
-            ></TextView>
+            <ImageButton
+                android:id="@+id/btn_thai"
+                android:layout_width="199dp"
+                android:layout_height="106dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/thai"></ImageButton>
 
-        <Button
-            android:id="@+id/btn_go"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/go"
-
-            ></Button>
-
-
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="Thai"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
